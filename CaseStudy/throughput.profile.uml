@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_SUBgEDDzEeWN1KeT6LcBwQ" name="Profile" metaclassReference="_Rlh7MDEbEeWE-5K0jyratg" metamodelReference="_SUBgETDzEeWN1KeT6LcBwQ">
+  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HnGRQDEdEeWE-5K0jyratg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_Ue60gEHBEeWiUK4Qexr5hg" name="Profile" nsURI="http:///schemas/Profile/_Ue6NcEHBEeWiUK4Qexr5hg/6" nsPrefix="Profile">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Ue60gUHBEeWiUK4Qexr5hg" source="http://www.eclipse.org/uml2/4.0.0/UML">
+        <references xmi:type="uml:Package" href="pathmap://Papyrus_PROFILES/MARTE_Library.library.uml#_3DJKAA4uEdysTsAUPnp57Q"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Ue7bkkHBEeWiUK4Qexr5hg" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Ue7bk0HBEeWiUK4Qexr5hg" key="Version" value="0.0.7"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Ue7blEHBEeWiUK4Qexr5hg" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Ue7blUHBEeWiUK4Qexr5hg" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Ue7blkHBEeWiUK4Qexr5hg" key="Date" value="2015-08-13"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Ue7bl0HBEeWiUK4Qexr5hg" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_Ue60gkHBEeWiUK4Qexr5hg" name="SendMessage">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Ue60g0HBEeWiUK4Qexr5hg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_OIArcDEbEeWE-5K0jyratg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_Ue60hEHBEeWiUK4Qexr5hg" name="base_Message" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Message"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_Ue60hkHBEeWiUK4Qexr5hg" name="MaxThroughPut" ordered="false" lowerBound="1" eType="_Ue60ikHBEeWiUK4Qexr5hg" containment="true"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_Ue60iEHBEeWiUK4Qexr5hg" name="MinThroughput" ordered="false" lowerBound="1" eType="_Ue60ikHBEeWiUK4Qexr5hg" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_Ue60ikHBEeWiUK4Qexr5hg" name="DataFrequency">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Ue60i0HBEeWiUK4Qexr5hg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_qQojADEbEeWE-5K0jyratg"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_Ue60jEHBEeWiUK4Qexr5hg" name="unit" ordered="false" eType="_Ue60kEHBEeWiUK4Qexr5hg"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_Ue60jkHBEeWiUK4Qexr5hg" name="precision" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Real"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_Ue60kEHBEeWiUK4Qexr5hg" name="MARTE_Library_MeasurementUnits_FrequencyUnitKind">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Ue60kUHBEeWiUK4Qexr5hg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="uml:Enumeration" href="pathmap://Papyrus_PROFILES/MARTE_Library.library.uml#_qFaygA4yEdysTsAUPnp57Q"/>
+        </eAnnotations>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_Ue60kkHBEeWiUK4Qexr5hg" name="Hz"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_Ue60k0HBEeWiUK4Qexr5hg" name="KHz" value="1"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_Ue60lEHBEeWiUK4Qexr5hg" name="MHz" value="2"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_Ue60lUHBEeWiUK4Qexr5hg" name="GHz" value="3"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_Ue60lkHBEeWiUK4Qexr5hg" name="rpm" value="4"/>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_kM-X4EG4EeWiUK4Qexr5hg" name="Profile" nsURI="http:///schemas/Profile/_kM9w0EG4EeWiUK4Qexr5hg/5" nsPrefix="Profile">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_kM-X4UG4EeWiUK4Qexr5hg" source="http://www.eclipse.org/uml2/4.0.0/UML">
+        <references xmi:type="uml:Package" href="pathmap://Papyrus_PROFILES/MARTE_Library.library.uml#_3DJKAA4uEdysTsAUPnp57Q"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_kM_mA0G4EeWiUK4Qexr5hg" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_kM_mBEG4EeWiUK4Qexr5hg" key="Version" value="0.0.6"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_kM_mBUG4EeWiUK4Qexr5hg" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_kM_mBkG4EeWiUK4Qexr5hg" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_kM_mB0G4EeWiUK4Qexr5hg" key="Date" value="2015-08-13"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_kM_mCEG4EeWiUK4Qexr5hg" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_kM-X4kG4EeWiUK4Qexr5hg" name="ThroughputLimit">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_kM-X40G4EeWiUK4Qexr5hg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_OIArcDEbEeWE-5K0jyratg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_kM-X5EG4EeWiUK4Qexr5hg" name="base_Message" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Message"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_kM-X5kG4EeWiUK4Qexr5hg" name="MaxThroughPut" ordered="false" lowerBound="1" eType="_kM-X6kG4EeWiUK4Qexr5hg" containment="true"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_kM-X6EG4EeWiUK4Qexr5hg" name="MinThroughput" ordered="false" lowerBound="1" eType="_kM-X6kG4EeWiUK4Qexr5hg" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_kM-X6kG4EeWiUK4Qexr5hg" name="DataFrequency">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_kM-X60G4EeWiUK4Qexr5hg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_qQojADEbEeWE-5K0jyratg"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_kM-X7EG4EeWiUK4Qexr5hg" name="unit" ordered="false" eType="_kM-X8EG4EeWiUK4Qexr5hg"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_kM-X7kG4EeWiUK4Qexr5hg" name="precision" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Real"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_kM-X8EG4EeWiUK4Qexr5hg" name="MARTE_Library_MeasurementUnits_FrequencyUnitKind">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_kM-X8UG4EeWiUK4Qexr5hg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="uml:Enumeration" href="pathmap://Papyrus_PROFILES/MARTE_Library.library.uml#_qFaygA4yEdysTsAUPnp57Q"/>
+        </eAnnotations>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_kM-X8kG4EeWiUK4Qexr5hg" name="Hz"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_kM-X80G4EeWiUK4Qexr5hg" name="KHz" value="1"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_kM-X9EG4EeWiUK4Qexr5hg" name="MHz" value="2"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_kM-X9UG4EeWiUK4Qexr5hg" name="GHz" value="3"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_kM-X9kG4EeWiUK4Qexr5hg" name="rpm" value="4"/>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_lTRa8EGfEeWiUK4Qexr5hg" name="Profile" nsURI="http:///schemas/Profile/_lTNwkEGfEeWiUK4Qexr5hg/4" nsPrefix="Profile">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_lTRa8UGfEeWiUK4Qexr5hg" source="http://www.eclipse.org/uml2/4.0.0/UML">
+        <references xmi:type="uml:Package" href="pathmap://Papyrus_PROFILES/MARTE_Library.library.uml#_3DJKAA4uEdysTsAUPnp57Q"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_lTUeQEGfEeWiUK4Qexr5hg" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lTUeQUGfEeWiUK4Qexr5hg" key="Version" value="0.0.5"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lTUeQkGfEeWiUK4Qexr5hg" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lTUeQ0GfEeWiUK4Qexr5hg" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lTUeREGfEeWiUK4Qexr5hg" key="Date" value="2015-08-13"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lTUeRUGfEeWiUK4Qexr5hg" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_lTRa8kGfEeWiUK4Qexr5hg" name="throughput">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_lTRa80GfEeWiUK4Qexr5hg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_OIArcDEbEeWE-5K0jyratg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_lTRa9EGfEeWiUK4Qexr5hg" name="base_Message" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Message"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_lTRa9kGfEeWiUK4Qexr5hg" name="MaxThroughPut" ordered="false" lowerBound="1" eType="_lTRa-kGfEeWiUK4Qexr5hg" containment="true"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_lTRa-EGfEeWiUK4Qexr5hg" name="MinThroughput" ordered="false" lowerBound="1" eType="_lTRa-kGfEeWiUK4Qexr5hg" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_lTRa-kGfEeWiUK4Qexr5hg" name="DataFrequency">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_lTRa-0GfEeWiUK4Qexr5hg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_qQojADEbEeWE-5K0jyratg"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_lTRa_EGfEeWiUK4Qexr5hg" name="unit" ordered="false" lowerBound="1" eType="_lTRbAEGfEeWiUK4Qexr5hg"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_lTRa_kGfEeWiUK4Qexr5hg" name="precision" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Real"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_lTRbAEGfEeWiUK4Qexr5hg" name="MARTE_Library_MeasurementUnits_FrequencyUnitKind">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_lTRbAUGfEeWiUK4Qexr5hg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="uml:Enumeration" href="pathmap://Papyrus_PROFILES/MARTE_Library.library.uml#_qFaygA4yEdysTsAUPnp57Q"/>
+        </eAnnotations>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_lTRbAkGfEeWiUK4Qexr5hg" name="Hz"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_lTRbA0GfEeWiUK4Qexr5hg" name="KHz" value="1"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_lTRbBEGfEeWiUK4Qexr5hg" name="MHz" value="2"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_lTRbBUGfEeWiUK4Qexr5hg" name="GHz" value="3"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_lTRbBkGfEeWiUK4Qexr5hg" name="rpm" value="4"/>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_aWhWED_JEeWDGqMbHWZXeQ" name="Profile" nsURI="http:///schemas/Profile/_aWXlED_JEeWDGqMbHWZXeQ/3" nsPrefix="Profile">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_aWhWET_JEeWDGqMbHWZXeQ" source="http://www.eclipse.org/uml2/4.0.0/UML">
+        <references xmi:type="uml:Package" href="pathmap://Papyrus_PROFILES/MARTE_Library.library.uml#_3DJKAA4uEdysTsAUPnp57Q"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_aWhWKj_JEeWDGqMbHWZXeQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_aWhWKz_JEeWDGqMbHWZXeQ" key="Version" value="0.0.4"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_aWhWLD_JEeWDGqMbHWZXeQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_aWhWLT_JEeWDGqMbHWZXeQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_aWhWLj_JEeWDGqMbHWZXeQ" key="Date" value="2015-08-11"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_aWhWLz_JEeWDGqMbHWZXeQ" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_aWhWEj_JEeWDGqMbHWZXeQ" name="throughput">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_aWhWEz_JEeWDGqMbHWZXeQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_OIArcDEbEeWE-5K0jyratg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_aWhWFD_JEeWDGqMbHWZXeQ" name="base_Message" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Message"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_aWhWFj_JEeWDGqMbHWZXeQ" name="MaxThroughPut" ordered="false" lowerBound="1" eType="_aWhWGj_JEeWDGqMbHWZXeQ" containment="true"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_aWhWGD_JEeWDGqMbHWZXeQ" name="MinThroughput" ordered="false" lowerBound="1" eType="_aWhWGj_JEeWDGqMbHWZXeQ" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_aWhWGj_JEeWDGqMbHWZXeQ" name="DataFrequency">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_aWhWGz_JEeWDGqMbHWZXeQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_qQojADEbEeWE-5K0jyratg"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_aWhWHD_JEeWDGqMbHWZXeQ" name="unit" ordered="false" lowerBound="1" eType="_aWhWID_JEeWDGqMbHWZXeQ"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_aWhWHj_JEeWDGqMbHWZXeQ" name="precision" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Real"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_aWhWID_JEeWDGqMbHWZXeQ" name="MARTE_Library_MeasurementUnits_FrequencyUnitKind">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_aWhWIT_JEeWDGqMbHWZXeQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="uml:Enumeration" href="pathmap://Papyrus_PROFILES/MARTE_Library.library.uml#_qFaygA4yEdysTsAUPnp57Q"/>
+        </eAnnotations>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_aWhWIj_JEeWDGqMbHWZXeQ" name="Hz"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_aWhWIz_JEeWDGqMbHWZXeQ" name="KHz" value="1"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_aWhWJD_JEeWDGqMbHWZXeQ" name="MHz" value="2"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_aWhWJT_JEeWDGqMbHWZXeQ" name="GHz" value="3"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_aWhWJj_JEeWDGqMbHWZXeQ" name="rpm" value="4"/>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_QXtOcT_HEeWDGqMbHWZXeQ" name="Profile" nsURI="http:///schemas/Profile/_QXtOcD_HEeWDGqMbHWZXeQ/2" nsPrefix="Profile">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QXtOcj_HEeWDGqMbHWZXeQ" source="http://www.eclipse.org/uml2/4.0.0/UML">
+        <references xmi:type="uml:Package" href="pathmap://Papyrus_PROFILES/MARTE_Library.library.uml#_3DJKAA4uEdysTsAUPnp57Q"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QXtOiz_HEeWDGqMbHWZXeQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QXtOjD_HEeWDGqMbHWZXeQ" key="Version" value="0.0.3"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QXtOjT_HEeWDGqMbHWZXeQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QXtOjj_HEeWDGqMbHWZXeQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QXtOjz_HEeWDGqMbHWZXeQ" key="Date" value="2015-08-11"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QXtOkD_HEeWDGqMbHWZXeQ" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_QXtOcz_HEeWDGqMbHWZXeQ" name="throughput">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QXtOdD_HEeWDGqMbHWZXeQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_OIArcDEbEeWE-5K0jyratg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_QXtOdT_HEeWDGqMbHWZXeQ" name="base_Message" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Message"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_QXtOdz_HEeWDGqMbHWZXeQ" name="MaxThroughPut" ordered="false" lowerBound="1" eType="_QXtOez_HEeWDGqMbHWZXeQ" containment="true"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_QXtOeT_HEeWDGqMbHWZXeQ" name="MinThroughput" ordered="false" lowerBound="1" eType="_QXtOez_HEeWDGqMbHWZXeQ" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_QXtOez_HEeWDGqMbHWZXeQ" name="DataFrequency">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QXtOfD_HEeWDGqMbHWZXeQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_qQojADEbEeWE-5K0jyratg"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_QXtOfT_HEeWDGqMbHWZXeQ" name="unit" ordered="false" lowerBound="1" eType="_QXtOgT_HEeWDGqMbHWZXeQ"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_QXtOfz_HEeWDGqMbHWZXeQ" name="precision" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Real"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_QXtOgT_HEeWDGqMbHWZXeQ" name="MARTE_Library_MeasurementUnits_FrequencyUnitKind">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QXtOgj_HEeWDGqMbHWZXeQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="uml:Enumeration" href="pathmap://Papyrus_PROFILES/MARTE_Library.library.uml#_qFaygA4yEdysTsAUPnp57Q"/>
+        </eAnnotations>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_QXtOgz_HEeWDGqMbHWZXeQ" name="Hz"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_QXtOhD_HEeWDGqMbHWZXeQ" name="KHz" value="1"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_QXtOhT_HEeWDGqMbHWZXeQ" name="MHz" value="2"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_QXtOhj_HEeWDGqMbHWZXeQ" name="GHz" value="3"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_QXtOhz_HEeWDGqMbHWZXeQ" name="rpm" value="4"/>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_tBqs8DErEeWN6P96687KeA" name="Profile" nsURI="http:///schemas/Profile/_tBj_QDErEeWN6P96687KeA/1" nsPrefix="Profile">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_tBu-ZDErEeWN6P96687KeA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tBvlcDErEeWN6P96687KeA" key="Version" value="0.0.2"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tBvlcTErEeWN6P96687KeA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tBvlcjErEeWN6P96687KeA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tBvlczErEeWN6P96687KeA" key="Date" value="2015-07-23"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tBvldDErEeWN6P96687KeA" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_tBqs8TErEeWN6P96687KeA" name="Stereotype1">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_tBqs8jErEeWN6P96687KeA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_OIArcDEbEeWE-5K0jyratg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_tBqs8zErEeWN6P96687KeA" name="base_Message" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Message"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_tBqs9TErEeWN6P96687KeA" name="MaxThroughPut" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_tBqs9zErEeWN6P96687KeA" name="MinThroughput" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_tBqs-TErEeWN6P96687KeA" name="DataFrequency">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_tBqs-jErEeWN6P96687KeA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_qQojADEbEeWE-5K0jyratg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_tBqs-zErEeWN6P96687KeA" name="unit" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_tBqs_TErEeWN6P96687KeA" name="precision" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_tBqs_zErEeWN6P96687KeA" name="DataFrequencyTimeUint">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_tBqtADErEeWN6P96687KeA" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_HnIGcDEdEeWE-5K0jyratg" name="Profile" nsURI="http:///schemas/Profile/_Hm_jkDEdEeWE-5K0jyratg/0" nsPrefix="Profile">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HnLJwDEdEeWE-5K0jyratg" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HnLJwTEdEeWE-5K0jyratg" key="Version" value="0.0.1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HnLJwjEdEeWE-5K0jyratg" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HnLJwzEdEeWE-5K0jyratg" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HnLJxDEdEeWE-5K0jyratg" key="Date" value="2015-07-23"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HnLJxTEdEeWE-5K0jyratg" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_HnIGcTEdEeWE-5K0jyratg" name="Stereotype1">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HnIGcjEdEeWE-5K0jyratg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_OIArcDEbEeWE-5K0jyratg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_HnIGczEdEeWE-5K0jyratg" name="base_Message" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Message"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_HnIGdTEdEeWE-5K0jyratg" name="MaxThroughPut" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_HnIGdzEdEeWE-5K0jyratg" name="MinThroughput" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_HnIGeTEdEeWE-5K0jyratg" name="DataFrequency">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HnIGejEdEeWE-5K0jyratg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_qQojADEbEeWE-5K0jyratg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_HnIGezEdEeWE-5K0jyratg" name="unit" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_HnIGfTEdEeWE-5K0jyratg" name="precision" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_Rlh7MDEbEeWE-5K0jyratg" alias="Message">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Message"/>
+  </elementImport>
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_SUBgETDzEeWN1KeT6LcBwQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+  </packageImport>
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_SUBgEjDzEeWN1KeT6LcBwQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_XNawwDEbEeWE-5K0jyratg" name="E_SendMessage_Message1" memberEnd="_XNawwTEbEeWE-5K0jyratg _XNY7kDEbEeWE-5K0jyratg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_XNawwTEbEeWE-5K0jyratg" name="extension_SendMessage" type="_OIArcDEbEeWE-5K0jyratg" aggregation="composite" association="_XNawwDEbEeWE-5K0jyratg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_OIArcDEbEeWE-5K0jyratg" name="SendMessage">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_XNY7kDEbEeWE-5K0jyratg" name="base_Message" association="_XNawwDEbEeWE-5K0jyratg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Message"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Zd8B4DEbEeWE-5K0jyratg" name="MaxThroughPut" visibility="public" type="_qQojADEbEeWE-5K0jyratg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fxzMoDEbEeWE-5K0jyratg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fx6hYDEbEeWE-5K0jyratg" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_bk3SIDEbEeWE-5K0jyratg" name="MinThroughput" visibility="public" type="_qQojADEbEeWE-5K0jyratg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lRWlkDEbEeWE-5K0jyratg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lRZo4DEbEeWE-5K0jyratg" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_qQojADEbEeWE-5K0jyratg" name="DataFrequency">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_CL9TsDEcEeWE-5K0jyratg" name="unit">
+      <type xmi:type="uml:Enumeration" href="pathmap://Papyrus_PROFILES/MARTE_Library.library.uml#_qFaygA4yEdysTsAUPnp57Q"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zrKZoEG3EeWiUK4Qexr5hg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zrMO0EG3EeWiUK4Qexr5hg" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_IwuBMDEcEeWE-5K0jyratg" name="precision" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_K1yQQDEcEeWE-5K0jyratg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_K10FcDEcEeWE-5K0jyratg" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_2aP8AD_IEeWDGqMbHWZXeQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_2asn8D_IEeWDGqMbHWZXeQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//GQAM"/>
+    </eAnnotations>
+    <appliedProfile xmi:type="uml:Profile" href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_4bV20APMEdyuUt-4qHuVvQ"/>
+  </profileApplication>
+</uml:Profile>
