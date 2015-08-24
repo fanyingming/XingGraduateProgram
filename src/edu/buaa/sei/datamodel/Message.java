@@ -1,4 +1,4 @@
-package edu.buaa.sei.run;
+package edu.buaa.sei.datamodel;
 
 public class Message {
 	public String title;
