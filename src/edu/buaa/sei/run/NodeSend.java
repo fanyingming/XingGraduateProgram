@@ -21,7 +21,8 @@ import edu.buaa.sei.utils.StringHandle;
 public class NodeSend {
 	
 	private String schedPolicy;
-	ArrayList<Process> pList = new ArrayList<Process>();
+	
+	private ArrayList<Process> pList = new ArrayList<Process>();
 	
 	public void parseNodeSend(String umlPath)
 			throws ParserConfigurationException, SAXException, IOException {
@@ -98,6 +99,14 @@ public class NodeSend {
 
 	public void setSchedPolicy(String schedPolicy) {
 		this.schedPolicy = schedPolicy;
+	}
+
+	public ArrayList<Process> getpList() {
+		return pList;
+	}
+
+	public void setpList(ArrayList<Process> pList) {
+		this.pList = pList;
 	}
 	
 }

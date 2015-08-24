@@ -185,6 +185,7 @@
           <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_PyaZ4EpYEeWaVNTq7z5N9w" name="priority" value="20"/>
         </ownedAttribute>
         <ownedOperation xmi:type="uml:Operation" xmi:id="_FVm44EoNEeWHt5v0-LD9uA" name="publish"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_FVm44EoNEeWHt5v0-LD9uA" name="send"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_f2cIsEoMEeWHt5v0-LD9uA" name="t2:Task">
         <substitution xmi:type="uml:Substitution" xmi:id="_OaNQcEoOEeWHt5v0-LD9uA" client="_f2cIsEoMEeWHt5v0-LD9uA" supplier="_WxgkgEoMEeWHt5v0-LD9uA" contract="_WxgkgEoMEeWHt5v0-LD9uA"/>
