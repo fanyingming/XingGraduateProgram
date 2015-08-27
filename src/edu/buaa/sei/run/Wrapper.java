@@ -9,6 +9,8 @@ import org.xml.sax.SAXException;
 
 import edu.buaa.sei.datamodel.Message;
 import edu.buaa.sei.datamodel.Process;
+import edu.buaa.sei.datamodel.Receiver;
+import edu.buaa.sei.datamodel.Sender;
 
 public class Wrapper {
 	public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
@@ -17,19 +19,30 @@ public class Wrapper {
 		NodeSend nodeSend = new NodeSend();
 		nodeSend.parseNodeSend("CaseStudy/NodeSend.uml");
 		String schedPolicy = nodeSend.getSchedPolicy();
-		ArrayList<Process> processList = nodeSend.getpList();
 		
-		Publisher publisher = new Publisher();
-		publisher.init();
-		publisher.getPublisher("CaseStudy/publisher.uml");
+		Sender sender = new Sender();
+		sender.getSender("CaseStudy/send.uml");
+		//test
+		ArrayList<Double> rl = sender.getTimeTableTime(2, 1);
+		for(int i = 0; i < rl.size(); i++) {
+			System.out.println(rl.get(i));
+		}
+		
+		Receiver receiver = new Receiver();
+		receiver.getReveiver("CaseStudy/receive.uml");
 		
 		Transporter transporter = new Transporter();
 		transporter.getTransporter("CaseStudy/transport.uml");
 		
-		//step 2: calculate time according to SchedPolicy type.
+		
+		
+		//step 2: 
 		System.out.println("-------------------------");
 		double time = 0;
 		
+		DDS dds = new DDS();
+		dds.getAllDependency("CaseStudy/publisher.uml");
+		/*
 		//calculate process time, sub threads was merged.
 		for (int i = 0; i < processList.size(); i++) {
 			Process process = processList.get(i);
@@ -88,5 +101,6 @@ public class Wrapper {
 		for (int i = 0; i < processList.size(); i++) {
 			System.out.printf("process %s, time used: %.2f ms\n" , processList.get(i).getName(), processList.get(i).getTimeUsed());
 		}
+		*/
 	}
 }

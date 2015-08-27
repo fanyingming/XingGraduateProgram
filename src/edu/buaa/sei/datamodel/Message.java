@@ -4,7 +4,7 @@ public class Message {
 	public String title;
 	public String name;
 	public String id;
-	public int priority;
+
 	public double time;
 	
 	public String getTitle() {
@@ -29,14 +29,6 @@ public class Message {
 	
 	public void setId(String id) {
 		this.id = id;
-	}
-	
-	public int getPriority() {
-		return priority;
-	}
-	
-	public void setPriority(int priority) {
-		this.priority = priority;
 	}
 	
 	public double getTime() {

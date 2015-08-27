@@ -42,12 +42,6 @@ public class NodeSend {
 				String type = eElement.getAttribute("schedPolicy");
 				schedPolicy = type;
 				
-				//get processList, eg. t1,t2,t3
-				String processStr = eElement.getAttribute("schedule");
-				String[] processList = processStr.split(";");
-				System.out.println("find process: " + processStr);
-				getProcessContent(doc, processList);
-				
 				break;
 			}
 		}

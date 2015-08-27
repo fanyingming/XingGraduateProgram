@@ -21,11 +21,11 @@ public class StringHandle {
 	public static int getKbFromStr(String str) {
 		char metric = str.charAt(str.length()-1);
 		int multiSize = 0;
-		if (metric == 'M')
+		if (metric == 'M' || metric == 'm')
 			multiSize = 1024;
-		else if (metric == 'G')
+		else if (metric == 'G' || metric == 'g')
 			multiSize = 1024*1024;
-		else if (metric == 'K')
+		else if (metric == 'K' || metric == 'k')
 			multiSize = 1;
 		else
 			System.out.println("no such metric : " + metric);
