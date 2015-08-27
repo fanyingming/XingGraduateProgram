@@ -10,4 +10,14 @@ public class RandomGenerator {
 		
 		return s;
 	}
+	
+	public static double getARandomNumD(double min, double max) {
+		Random random = new Random();
+		
+		double s = random.nextDouble()*max;
+		while (s < min)
+			s = random.nextDouble()*max;
+		
+		return s;
+	}
 }

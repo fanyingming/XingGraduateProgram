@@ -18,6 +18,7 @@ import edu.buaa.sei.datamodel.Dependency;
 import edu.buaa.sei.datamodel.LostPackage;
 import edu.buaa.sei.datamodel.Message;
 import edu.buaa.sei.datamodel.SendData;
+import edu.buaa.sei.utils.RandomGenerator;
 import edu.buaa.sei.utils.StringHandle;
 
 public class DDS {
@@ -109,14 +110,86 @@ public class DDS {
 			}
 		}
 		
+		
+	}
+	
+	public void printDependencyInfo() {
 		for (int i = 0; i < dependencyList.size(); i++) {
 			Dependency dep = dependencyList.get(i);
 			System.out.println(dep.getSrcPublisher().getPublisherName() + " --> " + dep.getDstPublisher().getPublisherName()
 					+ ", send data size: " + dep.getSendData().getDataSize() + "Kb, num: " + dep.getSendData().getDataNum()
 					+ ", lost package 1st: " + dep.getLostPackage().getFirstLostPackage()
-					+ ", 2nd: " + dep.getLostPackage().getSecondLostPackage());
+					+ ", 2nd: " + dep.getLostPackage().getSecondLostPackage()
+					+ ", time: " + dep.getTime() + ", reliability: " + dep.getReliability());
 		}
 	}
+	
+	public void calculateDependency() {
+		for (int i = 0; i < dependencyList.size(); i++) {
+			//TODO: get the true value.
+			Dependency dep = dependencyList.get(i);
+			
+			dep.setTime(RandomGenerator.getARandomNum(1, 10));
+			dep.setReliability(RandomGenerator.getARandomNumD(0.8, 1));
+		}
+	}
+	
+	public double recursiveGetTime(Publisher pub) {
+		double minTime = 99999999;
+		
+		for (int i = 0; i < dependencyList.size(); i++) {
+			Dependency dep = dependencyList.get(i);
+			if (dep.getDstPublisher().getPublisherId().equals(pub.getPublisherId())) {
+				double curTime = dep.getTime() + recursiveGetTime(dep.getSrcPublisher());
+				
+				if (curTime <= minTime) {
+					minTime = curTime;
+				}
+			}
+		}
+		if (minTime == 99999999)
+			return 0;
+		
+		return minTime;
+	}
+	
+	public double recursiveGetReliability(Publisher pub) {
+		double reliability = 1;
+		
+		for (int i = 0; i < dependencyList.size(); i++) {
+			Dependency dep = dependencyList.get(i);
+			if (dep.getDstPublisher().getPublisherId().equals(pub.getPublisherId())) {
+				reliability *= dep.getReliability() * recursiveGetReliability(dep.getSrcPublisher());
+			}
+		}
+		
+		return reliability;
+	}
+	
+	public void calculateTime() {
+		ArrayList<Publisher> leafPublisher = getLeafPublisher();
+		
+		for (int i = 0; i < leafPublisher.size(); i++) {
+			Publisher pub = leafPublisher.get(i);
+			
+			double time = recursiveGetTime(pub);
+			
+			System.out.printf("%s : %.3f ms.\n", pub.getPublisherName(), time);
+		}
+	}
+	
+	public void calculateReliability() {
+		ArrayList<Publisher> leafPublisher = getLeafPublisher();
+		
+		for (int i = 0; i < leafPublisher.size(); i++) {
+			Publisher pub = leafPublisher.get(i);
+			
+			double reliability = recursiveGetReliability(pub);
+			
+			System.out.printf("%s : %.3f%%.\n", pub.getPublisherName(), reliability*100);
+		}
+	}
+	
 	
 	public ArrayList<Publisher> getRootPublisher() {
 		ArrayList<Publisher> rl = new ArrayList<Publisher>();
@@ -124,8 +197,27 @@ public class DDS {
 		return rl;
 	}
 	
+	public boolean isLeafPublisher(Publisher pub) {
+		for (int i = 0; i < dependencyList.size(); i++) {
+			Dependency dep = dependencyList.get(i);
+			
+			if (dep.getSrcPublisher().getPublisherId().equals(pub.getPublisherId())) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
 	public ArrayList<Publisher> getLeafPublisher() {
 		ArrayList<Publisher> rl = new ArrayList<Publisher>();
+		for (int i = 0; i < publisherList.size(); i++) {
+			Publisher pub = publisherList.get(i);
+			
+			if (isLeafPublisher(pub)) {
+				rl.add(pub);
+			}
+		}
 		
 		return rl;
 	}
