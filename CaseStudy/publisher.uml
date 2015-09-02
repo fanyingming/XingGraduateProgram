@@ -709,7 +709,7 @@
   <Profile:lostpackage xmi:id="_A3dC0EoeEeWN6tXgwOfwgw" base_Dependency="_TmSTUEM1EeWJAsfFqaYb9Q"/>
   <SW_Interaction:MessageComResource xmi:id="_9zBPgEswEeWT0uH6wbtPJw" base_Classifier="_G8U5QEMhEeWMgeijh7t09Q" elementSize="1000">
     <capacity>20K*50</capacity>
-    <capacity>2M*950</capacity>
+    <capacity>150K*950</capacity>
   </SW_Interaction:MessageComResource>
   <SW_Interaction:MessageComResource xmi:id="_9QEBgEsyEeWT0uH6wbtPJw" base_Classifier="_UVYMsEsyEeWT0uH6wbtPJw" elementSize="800">
     <capacity>20k*800</capacity>

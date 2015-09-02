@@ -41,7 +41,7 @@ public class Wrapper {
 		
 		DDS dds = new DDS();
 		dds.getAllDependency("CaseStudy/publisher.uml");
-		dds.calculateDependency();
+		dds.calculateDependency(sender);
 		dds.printDependencyInfo();
 		System.out.println("-------------------------");
 		dds.calculateTime();

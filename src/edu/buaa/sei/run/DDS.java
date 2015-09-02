@@ -18,6 +18,7 @@ import edu.buaa.sei.datamodel.Dependency;
 import edu.buaa.sei.datamodel.LostPackage;
 import edu.buaa.sei.datamodel.Message;
 import edu.buaa.sei.datamodel.SendData;
+import edu.buaa.sei.datamodel.Sender;
 import edu.buaa.sei.utils.RandomGenerator;
 import edu.buaa.sei.utils.StringHandle;
 
@@ -124,7 +125,10 @@ public class DDS {
 		}
 	}
 	
-	public void calculateDependency() {
+	public void calculateDependency(Sender sender) {
+		//calculate send time.
+		
+		//calculate transmite time.
 		for (int i = 0; i < dependencyList.size(); i++) {
 			//TODO: get the true value.
 			Dependency dep = dependencyList.get(i);
