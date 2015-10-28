@@ -59,7 +59,7 @@ public class Transporter {
 							String sizeStr = node.getFirstChild()
 									.getNodeValue();
 							size_kb = StringHandle.getKbFromStr(sizeStr);
-							System.out.println("size:" + size_kb + "kb");
+	//						System.out.println("size:" + size_kb + "kb");
 							break;
 						}
 					}
@@ -86,7 +86,7 @@ public class Transporter {
 							if (node.getNodeName().equals("MaxThroughPut")) {
 								String maxStr = ((Element) node)
 										.getAttribute("precision");
-								System.out.println("max:" + maxStr);
+	//							System.out.println("max:" + maxStr);
 
 								maxThroughPut = Double.valueOf(maxStr);
 							}
@@ -96,7 +96,7 @@ public class Transporter {
 							if (node.getNodeName().equals("MinThroughput")) {
 								String minStr = ((Element) node)
 										.getAttribute("precision");
-								System.out.println("min:" + minStr);
+//								System.out.println("min:" + minStr);
 
 								minThroughput = Double.valueOf(minStr);
 							}

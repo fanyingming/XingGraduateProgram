@@ -127,7 +127,7 @@ public class Sender {
 		doc.getDocumentElement().normalize();
 		NodeList nList = doc.getElementsByTagName("message");
 		NodeList timeList = doc.getElementsByTagName("GQAM:GaStep");
-		System.out.println("Sender message count : " + nList.getLength());
+//		System.out.println("Sender message count : " + nList.getLength());
 		
 		messageList.clear();
 		// scan xml and get all valid message.
@@ -154,15 +154,15 @@ public class Sender {
 					if (containDumplicate(mes))
 						continue;
 
-					System.out.println("title: " + mes.title + ", name: "
-							+ mes.name + ", time: " + mes.time);
+	//				System.out.println("title: " + mes.title + ", name: "
+	//						+ mes.name + ", time: " + mes.time);
 					messageList.add(mes);
 				}
 
 			}
 		}
 
-		System.out.println("valid count : " + messageList.size());
+	//	System.out.println("valid count : " + messageList.size());
 	}
 
 	public ArrayList<Message> getMessageList() {

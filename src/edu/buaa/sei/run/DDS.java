@@ -22,6 +22,7 @@ import edu.buaa.sei.datamodel.Sender;
 import edu.buaa.sei.utils.RandomGenerator;
 import edu.buaa.sei.utils.StringHandle;
 
+import edu.buaa.sei.datamodel.*;
 public class DDS {
 	ArrayList<Dependency> dependencyList = new ArrayList<Dependency>();
 	
@@ -115,13 +116,14 @@ public class DDS {
 	}
 	
 	public void printDependencyInfo() {
+		System.out.printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n", "from", "to", "sendDataSize(KB)", "number", "lostPackage1st", "2nd", "time(ms)", "reliability(%)");
 		for (int i = 0; i < dependencyList.size(); i++) {
 			Dependency dep = dependencyList.get(i);
-			System.out.println(dep.getSrcPublisher().getPublisherName() + " --> " + dep.getDstPublisher().getPublisherName()
-					+ ", send data size: " + dep.getSendData().getDataSize() + "Kb, num: " + dep.getSendData().getDataNum()
-					+ ", lost package 1st: " + dep.getLostPackage().getFirstLostPackage()
-					+ ", 2nd: " + dep.getLostPackage().getSecondLostPackage()
-					+ ", time: " + dep.getTime() + ", reliability: " + dep.getReliability());
+			System.out.printf("%s\t%s\t%14d\t%13d\t%12d\t%2d\t%.3f\t%18.3f\n",dep.getSrcPublisher().getPublisherName(), dep.getDstPublisher().getPublisherName()
+					, dep.getSendData().getDataSize(), dep.getSendData().getDataNum()
+					, dep.getLostPackage().getFirstLostPackage()
+					, dep.getLostPackage().getSecondLostPackage()
+					, dep.getTime(), dep.getReliability()*100);
 		}
 	}
 	
@@ -192,6 +194,26 @@ public class DDS {
 			
 			System.out.printf("%s : %.3f%%.\n", pub.getPublisherName(), reliability*100);
 		}
+	}
+	
+	public ArrayList<Result> showResults() {
+		ArrayList<Publisher> leafPublisher = getLeafPublisher();
+		ArrayList<Result> rl = new ArrayList<Result>();
+		System.out.printf("\n%7s\t%10s\t%6s\n", "name", "reliability(%s)", "time(ms)");
+
+		for (int i = 0; i < leafPublisher.size(); i++) {
+			Publisher pub = leafPublisher.get(i);
+			
+			double reliability = recursiveGetReliability(pub);
+			double time = recursiveGetTime(pub);
+			
+			System.out.printf("%7s\t%10.3f\t%6.3f\n", pub.getPublisherName(), reliability*100, time);
+
+			Result res = new Result(pub.getPublisherName(), reliability*100, time);
+			rl.add(res);
+		}
+		
+		return rl;
 	}
 	
 	

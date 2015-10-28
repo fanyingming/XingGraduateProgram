@@ -403,7 +403,7 @@
   </uml:Model>
   <SW_Concurrency:SwSchedulableResource xmi:id="_0rHY4EoJEeWHt5v0-LD9uA" base_Classifier="_0qg78EoJEeWHt5v0-LD9uA"/>
   <SW_Concurrency:MemoryPartition xmi:id="_BwZ0IEoKEeWHt5v0-LD9uA" base_Classifier="_BwG5MEoKEeWHt5v0-LD9uA" base_Namespace="_BwG5MEoKEeWHt5v0-LD9uA"/>
-  <GRM:Scheduler xmi:id="_Q_-OQEoNEeWHt5v0-LD9uA" base_Lifeline="_1KSaAEgNEeWBt-ohmLRcZg" schedPolicy="TimeTableDriven" otherSchedPolicy="" schedule="t1;t2;"/>
+  <GRM:Scheduler xmi:id="_Q_-OQEoNEeWHt5v0-LD9uA" base_Lifeline="_1KSaAEgNEeWBt-ohmLRcZg" schedPolicy="FIFO" otherSchedPolicy="" schedule="t1;t2;"/>
   <GRM:ResourceUsage xmi:id="_W_v_YEoNEeWHt5v0-LD9uA" base_NamedElement="_LIXa4EgOEeWBt-ohmLRcZg"/>
   <GRM:ResourceUsage xmi:id="_bYF4oEoNEeWHt5v0-LD9uA" base_NamedElement="_7VS6QEn7EeWy2-8cMtAIGw"/>
   <GRM:ResourceUsage xmi:id="_hMtioEoNEeWHt5v0-LD9uA" base_NamedElement="_zn_lcEn9EeWy2-8cMtAIGw"/>

@@ -7,45 +7,31 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import edu.buaa.sei.datamodel.Message;
-import edu.buaa.sei.datamodel.Process;
-import edu.buaa.sei.datamodel.Receiver;
-import edu.buaa.sei.datamodel.Sender;
+import edu.buaa.sei.datamodel.*;
 
 public class Wrapper {
-	public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
-		
+	
+	public static ArrayList<Result> run(String nodeSendPath, String sendPath, String reveivePath, String transportPath,
+			String publisherPath) throws IOException, ParserConfigurationException, SAXException {
 		//setp 1: parse uml.
 		NodeSend nodeSend = new NodeSend();
-		nodeSend.parseNodeSend("CaseStudy/NodeSend.uml");
+		nodeSend.parseNodeSend(nodeSendPath);
 		String schedPolicy = nodeSend.getSchedPolicy();
 		
 		Sender sender = new Sender();
-		sender.getSender("CaseStudy/send.uml");
-		//test
-		ArrayList<Double> rl = sender.getTimeTableTime(2, 1);
-		for(int i = 0; i < rl.size(); i++) {
-			System.out.println(rl.get(i));
-		}
+		sender.getSender(sendPath);
 		
 		Receiver receiver = new Receiver();
-		receiver.getReveiver("CaseStudy/receive.uml");
+		receiver.getReveiver(reveivePath);
 		
 		Transporter transporter = new Transporter();
-		transporter.getTransporter("CaseStudy/transport.uml");
-		
-		
+		transporter.getTransporter(transportPath);
 		
 		//step 2: 
-		System.out.println("-------------------------");
-		
 		DDS dds = new DDS();
-		dds.getAllDependency("CaseStudy/publisher.uml");
+		dds.getAllDependency(publisherPath);
 		dds.calculateDependency(sender);
 		dds.printDependencyInfo();
-		System.out.println("-------------------------");
-		dds.calculateTime();
-		System.out.println("-------------------------");
-		dds.calculateReliability();
+		return dds.showResults();
 	}
 }
