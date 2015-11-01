@@ -14,11 +14,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import edu.buaa.sei.datamodel.Dependency;
-import edu.buaa.sei.datamodel.LostPackage;
-import edu.buaa.sei.datamodel.Message;
-import edu.buaa.sei.datamodel.SendData;
-import edu.buaa.sei.datamodel.Sender;
+import edu.buaa.sei.datamodel.*;
+
 import edu.buaa.sei.utils.RandomGenerator;
 import edu.buaa.sei.utils.StringHandle;
 
@@ -115,16 +112,26 @@ public class DDS {
 		
 	}
 	
-	public void printDependencyInfo() {
+	public ArrayList<internalResult> showDependencyInfo() {
+		ArrayList<internalResult> rl= new ArrayList<internalResult>();
 		System.out.printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n", "from", "to", "sendDataSize(KB)", "number", "lostPackage1st", "2nd", "time(ms)", "reliability(%)");
 		for (int i = 0; i < dependencyList.size(); i++) {
 			Dependency dep = dependencyList.get(i);
+			
+			internalResult e = new internalResult(dep.getSrcPublisher().getPublisherName(), dep.getDstPublisher().getPublisherName()
+					, dep.getSendData().getDataSize(), dep.getSendData().getDataNum()
+					, dep.getLostPackage().getFirstLostPackage()
+					, dep.getLostPackage().getSecondLostPackage()
+					, dep.getTime(), dep.getReliability()*100);
+			rl.add(e);
 			System.out.printf("%s\t%s\t%14d\t%13d\t%12d\t%2d\t%.3f\t%18.3f\n",dep.getSrcPublisher().getPublisherName(), dep.getDstPublisher().getPublisherName()
 					, dep.getSendData().getDataSize(), dep.getSendData().getDataNum()
 					, dep.getLostPackage().getFirstLostPackage()
 					, dep.getLostPackage().getSecondLostPackage()
 					, dep.getTime(), dep.getReliability()*100);
 		}
+		
+		return rl;
 	}
 	
 	public void calculateDependency(Sender sender) {

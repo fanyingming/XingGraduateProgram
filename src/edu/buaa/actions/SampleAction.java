@@ -55,8 +55,14 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 		String publisherPath = base + "/publisher.uml";
 		
 		ArrayList<Result> resList = new ArrayList<Result>();
+		ArrayList<internalResult> internalList = new ArrayList<internalResult>();
+		String schedPolicy = null;
 		try {
-			resList = Wrapper.run(nodeSendPath, sendPath, reveivePath, transportPath, publisherPath);
+			Wrapper wrapper = new Wrapper();
+			wrapper.run(nodeSendPath, sendPath, reveivePath, transportPath, publisherPath);
+			resList = wrapper.getFinalResults();
+			internalList = wrapper.getFinalInternalResults();
+			schedPolicy = wrapper.getSchedPolicy();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,6 +76,8 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 		
 		MyTitleAreaDialog dlg = new MyTitleAreaDialog(window.getShell());
 		dlg.resList = resList;
+		dlg.internalList = internalList;
+		dlg.schedPolicy = schedPolicy;
         dlg.open();
         /*
 		MessageDialog.openInformation(
@@ -108,6 +116,8 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 
 class MyTitleAreaDialog extends TitleAreaDialog {
 	 public ArrayList<Result> resList;
+	 public ArrayList<internalResult> internalList;
+	 public String schedPolicy;
 	  /**
 	   * MyTitleAreaDialog constructor
 	   * 
@@ -137,7 +147,8 @@ class MyTitleAreaDialog extends TitleAreaDialog {
 	    setTitle("RESULT");
 
 	    // Set the message
-	    setMessage("write what", IMessageProvider.INFORMATION);
+	    String titleContent = "Schedule Policy: " + schedPolicy;
+	    setMessage(titleContent, IMessageProvider.INFORMATION);
 
 	    return contents;
 	  }
@@ -150,6 +161,40 @@ class MyTitleAreaDialog extends TitleAreaDialog {
 	   */
 	  protected Control createDialogArea(Composite parent) {
 	    Composite composite = (Composite) super.createDialogArea(parent);
+	    
+	    Table table1=new Table(composite,SWT.MULTI | SWT.BORDER | SWT.FULL_SELECTION);
+	    table1.setLayoutData(new GridData(GridData.FILL_BOTH));
+	    table1.setLinesVisible(true);
+	    table1.setHeaderVisible(true);
+	    String[] titles1={"From","To","SendDataSize(KB)", "Number", "LostPackage1st", "2nd", "time(ms)", "reliability(%)"};
+	 
+	    for (int i=0; i < titles1.length; i++) {
+	      TableColumn column=new TableColumn(table1,SWT.RIGHT);
+	      column.setText(titles1[i]);
+	    }
+	    for (int i = 0; i < internalList.size(); i++) {
+	    	String from  = internalList.get(i).from;
+	    	String to = internalList.get(i).to;
+	    	String sendDataSize = String.format("%d", internalList.get(i).sendDataSize);
+	    	String number = String.format("%d", internalList.get(i).number);
+	    	String lostPackage1st = String.format("%d", internalList.get(i).lostPackage1st);
+	    	String lostPackage2st = String.format("%d", internalList.get(i).lostPackage2nd);
+	    	String time = String.format("%.2f", internalList.get(i).time);
+	    	String reliability  = String.format("%.2f", internalList.get(i).reliability);
+	    	TableItem item = new TableItem(table1, SWT.NONE);
+		    item.setText(0, from);
+		    item.setText(1, to);
+		    item.setText(2, sendDataSize);
+		    item.setText(3, number);
+		    item.setText(4, lostPackage1st);
+		    item.setText(5, lostPackage2st);
+		    item.setText(6, time);
+		    item.setText(7, reliability);
+	    }
+	    for (int i=0; i < titles1.length; i++) {
+	      table1.getColumn(i).pack();
+	    }
+	    
 
 	    Table table=new Table(composite,SWT.MULTI | SWT.BORDER | SWT.FULL_SELECTION);
 	    table.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -157,7 +202,7 @@ class MyTitleAreaDialog extends TitleAreaDialog {
 	    table.setHeaderVisible(true);
 	    String[] titles={"Name","Reliability(%)","Time(ms)"};
 	    for (int i=0; i < titles.length; i++) {
-	      TableColumn column=new TableColumn(table,SWT.LEFT);
+	      TableColumn column=new TableColumn(table,SWT.RIGHT);
 	      column.setText(titles[i]);
 	    }
 	    for (int i = 0; i < resList.size(); i++) {
