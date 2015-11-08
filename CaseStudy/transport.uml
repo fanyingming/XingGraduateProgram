@@ -289,10 +289,10 @@
     </profileApplication>
   </uml:Model>
   <GQAM:GaCommStep xmi:id="_lNHFUEJfEeWiUK4Qexr5hg" base_NamedElement="_RHqaAEJfEeWiUK4Qexr5hg" base_Message="_RHqaAEJfEeWiUK4Qexr5hg" blockT="">
-    <msgSize>2M</msgSize>
+    <msgSize>1M</msgSize>
   </GQAM:GaCommStep>
   <Profile:SendMessage xmi:id="_lOciEEJfEeWiUK4Qexr5hg" base_Message="_RHqaAEJfEeWiUK4Qexr5hg">
-    <MaxThroughPut xmi:type="Profile:DataFrequency" xmi:id="_8dRwEEl5EeW0Kc5658bJuw" precision="5000.0"/>
+    <MaxThroughPut xmi:type="Profile:DataFrequency" xmi:id="_8dRwEEl5EeW0Kc5658bJuw" precision="10000.0"/>
     <MinThroughput xmi:type="Profile:DataFrequency" xmi:id="__O6xQEl5EeW0Kc5658bJuw" precision="2000.0"/>
   </Profile:SendMessage>
   <GQAM:GaCommStep xmi:id="_1cMmQEJjEeWp3rmiNJ7SfA" base_NamedElement="_z3fuwEJiEeWp3rmiNJ7SfA" base_Message="_z3fuwEJiEeWp3rmiNJ7SfA"/>

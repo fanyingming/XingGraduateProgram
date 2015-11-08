@@ -134,36 +134,46 @@ public class DDS {
 		return rl;
 	}
 	
-	public void calculateDependency(Sender sender) {
+	public void calculateDependency(Sender sender, Receiver receiver, double speedMin, double speedMax) {
 		//calculate send time.
 		
 		//calculate transmite time.
 		for (int i = 0; i < dependencyList.size(); i++) {
 			//TODO: get the true value.
 			Dependency dep = dependencyList.get(i);
-			
-			dep.setTime(RandomGenerator.getARandomNum(1, 10));
-			dep.setReliability(RandomGenerator.getARandomNumD(0.8, 1));
+			int dataSize = dep.getSendData().getDataSize();
+			double speed = RandomGenerator.getARandomNum(speedMin, speedMax);
+			double time = dataSize*speed;
+			dep.setTime(time);
+			//reliability calculation.
+			LostPackage lostPackages = dep.getLostPackage();
+			double reliability = 1;
+			if (lostPackages.getFirstLostPackage() == 0) {
+				reliability = 1;
+			} else {
+				reliability = (double)(dep.getSendData().getDataNum() - lostPackages.getSecondLostPackage())/(double)dep.getSendData().getDataNum();
+			}
+			dep.setReliability(reliability);
 		}
 	}
 	
 	public double recursiveGetTime(Publisher pub) {
-		double minTime = 99999999;
+		double maxTime = -1;
 		
 		for (int i = 0; i < dependencyList.size(); i++) {
 			Dependency dep = dependencyList.get(i);
 			if (dep.getDstPublisher().getPublisherId().equals(pub.getPublisherId())) {
 				double curTime = dep.getTime() + recursiveGetTime(dep.getSrcPublisher());
 				
-				if (curTime <= minTime) {
-					minTime = curTime;
+				if (curTime >= maxTime) {
+					maxTime = curTime;
 				}
 			}
 		}
-		if (minTime == 99999999)
+		if (maxTime == -1)
 			return 0;
 		
-		return minTime;
+		return maxTime;
 	}
 	
 	public double recursiveGetReliability(Publisher pub) {

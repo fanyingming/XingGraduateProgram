@@ -111,16 +111,21 @@ public class Transporter {
 		maxKb = maxThroughPut;
 	}
 
-	public double calculateTransportFIFO() {
+	public double calculateTransport() {
 		double time = 0;
 //		int packageNum = (int) Math.ceil(totalsize / paskageUnitSize);
 		double bandWidth = RandomGenerator.getARandomNum(minKb, maxKb);
 		
-		time = (totalsize / bandWidth) * 1000;
+		time = (totalsize / bandWidth);
 		System.out.println("transport time used " + time + "ms.");
 
 		return time;
 	}
 
-	
+	public double speedMin() {
+		return (double)totalsize/maxKb;
+	}
+	public double speedMax() {
+		return (double)totalsize/minKb;
+	}
 }

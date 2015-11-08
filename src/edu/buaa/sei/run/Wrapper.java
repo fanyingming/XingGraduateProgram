@@ -26,17 +26,19 @@ public class Wrapper {
 		
 		Sender sender = new Sender();
 		sender.getSender(sendPath);
+		sender.getFIFOSendTime();
 		
 		Receiver receiver = new Receiver();
 		receiver.getReveiver(reveivePath);
 		
 		Transporter transporter = new Transporter();
 		transporter.getTransporter(transportPath);
-		
+		double speedMin = transporter.speedMin();
+		double speedMax = transporter.speedMax();
 		//step 2: 
 		DDS dds = new DDS();
 		dds.getAllDependency(publisherPath);
-		dds.calculateDependency(sender);
+		dds.calculateDependency(sender, receiver, speedMin, speedMax);
 		finalInternalResults = dds.showDependencyInfo();
 		finalResults = dds.showResults();
 	}
