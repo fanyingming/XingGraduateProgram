@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Buaa
+Bundle-Name: DDSSimulator
 Bundle-SymbolicName: edu.buaa;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: edu.buaa.Activator
