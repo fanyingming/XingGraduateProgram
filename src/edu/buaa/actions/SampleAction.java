@@ -394,6 +394,19 @@ class MyTitleAreaDialog extends TitleAreaDialog {
 	public void okPressed() {
 		super.okPressed();
 	}
+	
+	/**
+	 * Creates the buttons for the button bar
+	 * 
+	 * @param parent
+	 *            the parent composite
+	 */
+	protected void createButtonsForButtonBar(Composite parent) {
+		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL,
+				true);
+		createButton(parent, IDialogConstants.CANCEL_ID, "Show Chart",
+				true);
+	}
 }
 
 class ChartDialog extends TitleAreaDialog {
