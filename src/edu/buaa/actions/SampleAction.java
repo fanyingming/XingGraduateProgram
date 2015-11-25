@@ -3,13 +3,16 @@ package edu.buaa.actions;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
+import java.awt.Point;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.xml.crypto.Data;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.eclipse.jface.action.IAction;
@@ -31,6 +34,11 @@ import org.xml.sax.SAXException;
 
 import edu.buaa.sei.run.*;
 import edu.buaa.sei.datamodel.*;
+
+import org.swtchart.*;
+import org.swtchart.ISeries.SeriesType;
+
+
 
 ;
 /**
@@ -57,21 +65,21 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 	 * @see IWorkbenchWindowActionDelegate#run
 	 */
 	public void run(IAction action) {
+
 		DirDialog dirDlg = new DirDialog(window.getShell());
-//		dirDlg.create();
 		int rv =  dirDlg.open();
-		if ( rv == Window.OK )  
-		{
+		if ( rv == Window.OK ) {
 			String basePath = dirDlg.getBasePath();
-			if (basePath.length() > 0)
-			{
+			if (basePath.length() == 0) {
+				MessageDialog.openInformation(window.getShell(), "ERROR",
+						"Can't find model file.");
+			} else {
 				showResultDialog(basePath);
 				return;
 			}
+		} else {
+			//click cancel.
 		}
-
-		MessageDialog.openInformation(window.getShell(), "ERROR",
-				"Can't find model file.");
 	}
 
 	void showResultDialog(String base) {
@@ -107,7 +115,13 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 		dlg.resList = resList;
 		dlg.internalList = internalList;
 		dlg.schedPolicy = schedPolicy;
-		dlg.open();
+		int rv = dlg.open();
+		if (rv != Window.OK ) {
+			ChartDialog chartDlg = new ChartDialog(window.getShell());
+			chartDlg.resList = dlg.resList;
+			
+			chartDlg.open();
+		}
 	}
 
 	/**
@@ -262,6 +276,7 @@ class MyTitleAreaDialog extends TitleAreaDialog {
 	public ArrayList<internalResult> internalList;
 	public String schedPolicy;
 
+
 	/**
 	 * MyTitleAreaDialog constructor
 	 * 
@@ -300,6 +315,8 @@ class MyTitleAreaDialog extends TitleAreaDialog {
 		return contents;
 	}
 
+	
+	
 	/**
 	 * Creates the gray area
 	 * 
@@ -373,19 +390,141 @@ class MyTitleAreaDialog extends TitleAreaDialog {
 		}
 		return composite;
 	}
-
-	/**
-	 * Creates the buttons for the button bar
-	 * 
-	 * @param parent
-	 *            the parent composite
-	 */
-	protected void createButtonsForButtonBar(Composite parent) {
-		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL,
-				true);
-	}
+	
 	public void okPressed() {
 		super.okPressed();
 	}
+}
+
+class ChartDialog extends TitleAreaDialog {
+	private Shell shell;
+	public ArrayList<Result> resList;
+	/**
+	 * MyTitleAreaDialog constructor
+	 * 
+	 * @param shell
+	 *            the parent shell
+	 */
+	public ChartDialog(Shell shell) {
+		super(shell);
+		this.shell = shell;
+	}
+
+	/**
+	 * Closes the dialog box Override so we can dispose the image we created
+	 */
+	public boolean close() {
+		return super.close();
+	}
+	
+	/**
+	 * Creates the dialog's contents
+	 * 
+	 * @param parent
+	 *            the parent composite
+	 * @return Control
+	 */
+	protected Control createContents(Composite parent) {
+		Control contents = super
+				.createContents((org.eclipse.swt.widgets.Composite) parent);
+
+		// Set the title
+		setTitle("CHART");
+
+		// Set the message
+		String titleContent = "...";
+		setMessage(titleContent, IMessageProvider.INFORMATION);
+		return contents;
+	}
+
+
+	private Chart createChart(final Composite parent)
+    {
+		// create a chart
+        Chart chart = new Chart(parent, SWT.NONE);
+
+        // set titles
+        chart.getTitle().setText("Reliability Chart");
+        chart.getAxisSet().getXAxis(0).getTitle().setText("Node Name");
+        chart.getAxisSet().getYAxis(0).getTitle().setText("Reliability(%)");
+        
+
+        String[] strList = new String[resList.size()];
+        double[] reliaList = new double[resList.size()];
+        double[] timeList = new double[resList.size()];
+        
+        for (int i = 0; i < resList.size(); i++) {
+        	strList[i] = resList.get(i).name;
+        	reliaList[i] = resList.get(i).reliability;
+        	timeList[i] = resList.get(i).time;
+        }
+        // set category
+        chart.getAxisSet().getXAxis(0).enableCategory(true);
+        chart.getAxisSet().getXAxis(0).setCategorySeries(strList);
+        
+        // create bar series
+        IBarSeries barSeries1 = (IBarSeries) chart.getSeriesSet().createSeries(
+                SeriesType.BAR, "Reliability");
+        barSeries1.setYSeries(reliaList);
+        
+        barSeries1.setBarPadding(50);
+        Color color = new Color(parent.getDisplay().getDefault(), 80, 240, 180);
+        barSeries1.setBarColor(color);
+ 
+        chart.getAxisSet().adjustRange();
+        
+        //another chart.
+        chart = new Chart(parent, SWT.NONE);
+        
+     // set titles
+        chart.getTitle().setText("Time Chart");
+        chart.getAxisSet().getXAxis(0).getTitle().setText("Node Name");
+        chart.getAxisSet().getYAxis(0).getTitle().setText("Time(ms)");
+        
+        for (int i = 0; i < resList.size(); i++) {
+        	strList[i] = resList.get(i).name;
+        	reliaList[i] = resList.get(i).reliability;
+        	timeList[i] = resList.get(i).time;
+        }
+        // set category
+        chart.getAxisSet().getXAxis(0).enableCategory(true);
+        chart.getAxisSet().getXAxis(0).setCategorySeries(strList);
+
+        // create bar series
+        IBarSeries barSeries11 = (IBarSeries) chart.getSeriesSet().createSeries(
+                SeriesType.BAR, "Time");
+        barSeries11.setYSeries(timeList);
+        barSeries11.setBarPadding(50);
+
+        // adjust the axis range
+        chart.getAxisSet().adjustRange();
+        return chart;
+    }
+	
+	/**
+	 * Creates the gray area
+	 * 
+	 * @param parent
+	 *            the parent composite
+	 * @return Control
+	 */
+	protected Control createDialogArea(Composite parent) {
+		final Composite dialogArea = (Composite) super.createDialogArea(parent);
+
+        final Composite container = new Composite(dialogArea, SWT.NULL);
+        container.setLayout(new FillLayout());
+        container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
+        createChart(container);
+
+        return dialogArea;
+	}	
+	
+	@Override
+	
+    protected void setShellStyle(final int newShellStyle)
+    {
+        super.setShellStyle(newShellStyle | SWT.RESIZE);    
+    }
 }
 

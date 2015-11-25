@@ -19,7 +19,7 @@
                label="Run"
                icon="icons/heart.png"
                class="edu.buaa.actions.SampleAction"
-               tooltip="Hello, Eclipse world"
+               tooltip="simulate DDS model"
                menubarPath="sampleMenu/sampleGroup"
                toolbarPath="sampleGroup"
                id="edu.buaa.actions.SampleAction">
