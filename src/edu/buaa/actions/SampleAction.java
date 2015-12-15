@@ -4,8 +4,12 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.RowData;
+import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 
 import java.awt.Point;
@@ -21,7 +25,9 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.DirectoryDialog;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
@@ -69,6 +75,8 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 		DirDialog dirDlg = new DirDialog(window.getShell());
 		int rv =  dirDlg.open();
 		if ( rv == Window.OK ) {
+			ProgressBarDlg progressBarDlg = new ProgressBarDlg();
+			progressBarDlg.open();
 			String basePath = dirDlg.getBasePath();
 			if (basePath.length() == 0) {
 				MessageDialog.openInformation(window.getShell(), "ERROR",
@@ -333,7 +341,7 @@ class MyTitleAreaDialog extends TitleAreaDialog {
 		table1.setLinesVisible(true);
 		table1.setHeaderVisible(true);
 		String[] titles1 = { "From", "To", "SendDataSize(KB)", "Number",
-				"LostPackage1st", "2nd", "time(ms)", "reliability(%)" };
+				"LostPackage1st", "2nd", "time(s)", "reliability(%)" };
 
 		for (int i = 0; i < titles1.length; i++) {
 			TableColumn column = new TableColumn(table1, SWT.RIGHT);
@@ -371,7 +379,7 @@ class MyTitleAreaDialog extends TitleAreaDialog {
 		table.setLayoutData(new GridData(GridData.FILL_BOTH));
 		table.setLinesVisible(true);
 		table.setHeaderVisible(true);
-		String[] titles = { "Name", "Reliability(%)", "Time(ms)" };
+		String[] titles = { "Name", "Reliability(%)", "Time(s)" };
 		for (int i = 0; i < titles.length; i++) {
 			TableColumn column = new TableColumn(table, SWT.RIGHT);
 			column.setText(titles[i]);
@@ -541,3 +549,118 @@ class ChartDialog extends TitleAreaDialog {
     }
 }
 
+class ProgressBarDlg {
+    private Display display;
+    private Shell shell;
+    private Composite statusbar;
+    private Label statusbarLabel;
+    private ProgressBar progressBar;
+    private Button hideProbarButton;
+    private ArrayList<String> barContent;
+    
+    public void setBarContent() {
+    	barContent = new ArrayList<String>();
+    	barContent.add("prepare");
+    	barContent.add("1. 正在解析模型...");
+    	barContent.add("2. 模型转换为指令...");
+    	barContent.add("3. 指令计算中...");
+  /*  	barContent.add("3. 指令计算中...");
+    	barContent.add("3. 指令计算中...");
+    	barContent.add("3. 指令计算中...");
+    	barContent.add("3. 指令计算中...");
+    	barContent.add("3. 指令计算中...");
+    	barContent.add("3. 指令计算中...");
+    	barContent.add("3. 指令计算中...");
+    	barContent.add("3. 指令计算中...");*/
+    }
+ 
+    public void open() {
+    	setBarContent();
+              display = Display.getDefault();
+              
+              shell = new Shell(SWT.NO_TRIM);
+              shell.setSize(310, 40);
+              // ---------创建窗口中的其他界面组件-------------
+              shell.setLayout(new GridLayout());
+              createStatusbar(shell);
+              // -----------------END------------------------
+              shell.layout();
+              LayoutUtil.centerShell(display, shell);
+              shell.open();
+              showProgress(shell);
+              while (!shell.isDisposed()) {
+                       if (!display.readAndDispatch())
+                                display.sleep();
+              }
+              display.dispose();
+    }
+
+    private void showProgress(Composite parent) {
+        
+        new Thread() {
+                  public void run() {
+                           for (int i = 1; i < barContent.size(); i++) {
+                                    moveProgressBar(i);
+                                    try {  Thread.sleep(1000);          } catch (Throwable e2) {} //停一秒
+                           }
+                           disposeProgressBar();
+                  }
+                  private void moveProgressBar(final int i) {
+                           display.asyncExec(new Runnable() {
+                                    public void run() {
+                                              if (!statusbarLabel.isDisposed())
+                                                       statusbarLabel.setText(barContent.get(i));
+                                              if (!progressBar.isDisposed())
+                                                       progressBar.setSelection((int)(((double)i)/(barContent.size()-1) * 100));
+                                    }
+                           });
+                  }
+                  private void disposeProgressBar() {
+                           if (display.isDisposed())   return;
+                           display.asyncExec(new Runnable() {
+                                    public void run() {
+                                              progressBar.dispose();
+                                              shell.dispose();
+                                    }
+                           }); 
+                  }
+        }.start();
+    }
+ 
+    private void createStatusbar(Composite parent) {
+              statusbar = new Composite(parent, SWT.NONE);
+              //设置工具栏在Shell中的形状为水平抢占充满，并高19像素
+              GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+              gridData.heightHint = 30;
+              statusbar.setLayoutData(gridData);
+              //设置为用行列式布局管理状态栏里的组件
+              RowLayout layout = new RowLayout();
+              layout.marginLeft = layout.marginTop = 0; //无边距
+              statusbar.setLayout(layout);
+              progressBar = createProgressBar(statusbar);
+              //创建一个用于显示文字的标签
+              statusbarLabel = new Label(statusbar, SWT.BORDER);
+              statusbarLabel.setLayoutData(new RowData(300, -1));
+              
+              statusbar.layout();// 重新布局一下工具栏，使进度条显示出来
+    }
+    //创建进度条
+    private ProgressBar createProgressBar(Composite parent) {
+              ProgressBar progressBar = new ProgressBar(parent, SWT.SMOOTH);
+              progressBar.setMinimum(0); // 最小值
+              progressBar.setMaximum(100);// 最大值
+              progressBar.setLayoutData(new RowData(300, -1));
+              return progressBar;
+    }
+}
+
+ class LayoutUtil {  
+	  
+    public static void centerShell(Display display,Shell shell){  
+        Rectangle displayBounds = display.getPrimaryMonitor().getBounds();  
+        Rectangle shellBounds = shell.getBounds();  
+        int x = displayBounds.x + (displayBounds.width - shellBounds.width)>>1;  
+        int y = displayBounds.y + (displayBounds.height - shellBounds.height)>>1;  
+        shell.setLocation(x, y);  
+    }  
+} 
