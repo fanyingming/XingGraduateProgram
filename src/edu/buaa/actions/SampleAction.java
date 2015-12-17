@@ -535,9 +535,8 @@ class ChartDialog extends TitleAreaDialog {
         final Composite container = new Composite(dialogArea, SWT.NULL);
         container.setLayout(new FillLayout());
         container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        container.setSize(500, 800);
+        container.setSize(500, 500);
         createChart(container);
-
         return dialogArea;
 	}	
 	
@@ -555,7 +554,7 @@ class ChartDialog extends TitleAreaDialog {
 
 //	    size.x = convertWidthInCharsToPixels(75);
 
-	    size.y *= 2;
+	    size.y = size.y*3/2;
 
 	    return size;
 	}
@@ -604,7 +603,7 @@ class ProgressBarDlg {
                        if (!display.readAndDispatch())
                                 display.sleep();
               }
-              display.dispose();
+    //          display.dispose();
     }
 
     private void showProgress(Composite parent) {
