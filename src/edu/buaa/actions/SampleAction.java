@@ -77,8 +77,6 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 		DirDialog dirDlg = new DirDialog(window.getShell());
 		int rv =  dirDlg.open();
 		if ( rv == Window.OK ) {
-			ProgressBarDlg progressBarDlg = new ProgressBarDlg();
-			progressBarDlg.open();
 			String basePath = dirDlg.getBasePath();
 			if (basePath.length() == 0) {
 				MessageDialog.openInformation(window.getShell(), "ERROR",
@@ -120,7 +118,10 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
+		ProgressBarDlg progressBarDlg = new ProgressBarDlg();
+		progressBarDlg.open();
+		
 		ResultDialog dlg = new ResultDialog(window.getShell());
 		dlg.resList = resList;
 		dlg.internalList = internalList;
