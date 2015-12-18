@@ -24,6 +24,15 @@
                toolbarPath="sampleGroup"
                id="edu.buaa.actions.SampleAction">
          </action>
+         <action
+               label="About"
+               icon="icons/heart.png"
+               class="edu.buaa.actions.AboutAction"
+               tooltip="About simulate DDS model"
+               menubarPath="sampleMenu/sampleGroup"
+               toolbarPath="sampleGroup"
+               id="edu.buaa.actions.AboutAction">
+         </action>
       </actionSet>
    </extension>
 

@@ -40,10 +40,11 @@ public class ProgressBarDlg {
               display = Display.getDefault();
               
               shell = new Shell(SWT.NO_TRIM);
-              shell.setSize(width+10, height);
+              
       
               shell.setLayout(new GridLayout());
               createStatusbar(shell);
+              shell.setSize(width+10, statusbarLabel.getSize().y + progressBar.getSize().y + 10);
               // -----------------END------------------------
               shell.layout();
               LayoutUtil.centerShell(display, shell);
