@@ -1,16 +1,23 @@
 package edu.buaa.sei.dialog;
 
+import java.net.URL;
 import java.util.ArrayList;
 
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
+import org.osgi.framework.Bundle;
 import org.swtchart.Chart;
 import org.swtchart.IBarSeries;
 import org.swtchart.ISeries.SeriesType;
@@ -20,6 +27,8 @@ import edu.buaa.sei.datamodel.Result;
 public class ChartDialog extends TitleAreaDialog {
 	private Shell shell;
 	public ArrayList<Result> resList;
+	private Image image = null;
+	
 	/**
 	 * MyTitleAreaDialog constructor
 	 * 
@@ -29,6 +38,14 @@ public class ChartDialog extends TitleAreaDialog {
 	public ChartDialog(Shell shell) {
 		super(shell);
 		this.shell = shell;
+		Bundle bundle = Platform.getBundle("edu.buaa.simulator");
+		final URL fullPathString = FileLocator.find(bundle, new Path(
+				"icons/logo.png"), null);
+
+		ImageDescriptor imageDesc = ImageDescriptor
+				.createFromURL(fullPathString);
+
+		image = imageDesc.createImage();
 	}
 
 	/**
@@ -55,6 +72,8 @@ public class ChartDialog extends TitleAreaDialog {
 		// Set the message
 		String titleContent = "...";
 		setMessage(titleContent, IMessageProvider.INFORMATION);
+		if (image != null)
+			setTitleImage(image);
 		return contents;
 	}
 
@@ -152,7 +171,7 @@ public class ChartDialog extends TitleAreaDialog {
 	protected org.eclipse.swt.graphics.Point getInitialSize() {
 	    final org.eclipse.swt.graphics.Point size = super.getInitialSize();
 
-//	    size.x = convertWidthInCharsToPixels(75);
+	    size.x = size.x*5/4;
 
 	    size.y = size.y*3/2;
 
