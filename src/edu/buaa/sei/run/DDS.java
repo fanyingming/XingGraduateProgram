@@ -143,7 +143,7 @@ public class DDS {
 			Dependency dep = dependencyList.get(i);
 			int dataSize = dep.getSendData().getDataSize();
 			double speed = RandomGenerator.getARandomNum(speedMin, speedMax);
-			double time = dataSize*speed/1000;//unit is second(s), not ms.
+			double time = dataSize*speed;
 			dep.setTime(time);
 			//reliability calculation.
 			LostPackage lostPackages = dep.getLostPackage();

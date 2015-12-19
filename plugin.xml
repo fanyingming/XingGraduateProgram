@@ -38,7 +38,7 @@
                label="Config"
                icon="icons/sample.gif"
                class="edu.buaa.actions.InputAction"
-               tooltip="input something"
+               tooltip="config something"
                menubarPath="sampleMenu/sampleGroup"
                toolbarPath="sampleGroup"
                id="edu.buaa.actions.InputAction">
