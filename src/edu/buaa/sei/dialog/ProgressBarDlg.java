@@ -26,13 +26,15 @@ public class ProgressBarDlg {
     private ArrayList<String> barContent;
     private int width = 300;
     private int height = 80;
+    private int sleepms = 600;
     
     public void setBarContent() {
     	barContent = new ArrayList<String>();
     	barContent.add("prepare");
-    	barContent.add("1. 指令转换...");
-    	barContent.add("2. 指令计算...");
-    	barContent.add("3. 结果生成...");
+    	barContent.add("1. 读取模型...");
+    	barContent.add("2. 指令转换...");
+    	barContent.add("3. 指令计算...");
+    	barContent.add("4. 结果生成...");
     }
  
     public void open() {
@@ -63,7 +65,7 @@ public class ProgressBarDlg {
                   public void run() {
                            for (int i = 1; i < barContent.size(); i++) {
                                     moveProgressBar(i);
-                                    try {  Thread.sleep(1000);          } catch (Throwable e2) {} 
+                                    try {  Thread.sleep(sleepms);          } catch (Throwable e2) {} 
                            }
                            disposeProgressBar();
                   }

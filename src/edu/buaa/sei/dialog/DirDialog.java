@@ -7,6 +7,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -21,6 +22,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.osgi.framework.Bundle;
+
+import edu.buaa.Activator;
 
 public class DirDialog extends TitleAreaDialog {
 	private Shell shell;
@@ -91,6 +94,9 @@ public class DirDialog extends TitleAreaDialog {
 		GridData data = new GridData(GridData.FILL_HORIZONTAL);
 		data.horizontalSpan = 1;
 		text.setLayoutData(data);
+		//load memory path.
+		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		text.setText(store.getString(Activator.PREF_PARAM_MODEL_PATH));
 		
 		// Clicking the button will allow the user
 				// to select a directory

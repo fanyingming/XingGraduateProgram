@@ -20,6 +20,7 @@ import javax.xml.crypto.Data;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Button;
@@ -38,6 +39,7 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.jface.dialogs.*;
 import org.xml.sax.SAXException;
 
+import edu.buaa.Activator;
 import edu.buaa.sei.run.*;
 import edu.buaa.sei.utils.*;
 import edu.buaa.sei.datamodel.*;
@@ -91,7 +93,8 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 	}
 
 	void showResultDialog(String base) {
-	//	 base = "/Users/fanyingming/GitRepo/XingGraduateProgram/CaseStudy";
+		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		store.setDefault(Activator.PREF_PARAM_MODEL_PATH, base);
 		String nodeSendPath = base + "/NodeSend.uml";
 		String sendPath = base + "/send.uml";
 		String reveivePath = base + "/receive.uml";
