@@ -8,6 +8,10 @@ import org.osgi.framework.BundleContext;
  * The activator class controls the plug-in life cycle
  */
 public class Activator extends AbstractUIPlugin {
+	public static final String PREF_PARAM_1 = "realtime_dataSize";
+    public static final String PREF_PARAM_2 = "realtime_delay";
+    public static final String PREF_PARAM_3 = "reliability_dataSize";
+    public static final String PREF_PARAM_4 = "reliability_reliability";
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "edu.buaa"; //$NON-NLS-1$

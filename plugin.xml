@@ -26,14 +26,29 @@
          </action>
          <action
                label="About"
-               icon="icons/heart.png"
+               icon="icons/sample.gif"
                class="edu.buaa.actions.AboutAction"
                tooltip="About simulate DDS model"
                menubarPath="sampleMenu/sampleGroup"
                toolbarPath="sampleGroup"
                id="edu.buaa.actions.AboutAction">
          </action>
+         <action
+               label="input"
+               icon="icons/sample.gif"
+               class="edu.buaa.actions.InputAction"
+               tooltip="input something"
+               menubarPath="sampleMenu/sampleGroup"
+               toolbarPath="sampleGroup"
+               id="edu.buaa.actions.InputAction">
+         </action>
       </actionSet>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="edu.buaa.AbstractPreferenceInitializer1">
+      </initializer>
    </extension>
 
 </plugin>

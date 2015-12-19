@@ -1,8 +1,14 @@
 package edu.buaa.actions;
 
+import java.awt.Window;
+import java.net.URL;
+
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -12,11 +18,17 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.DirectoryDialog;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
+import org.osgi.framework.Bundle;
+
 
 public class AboutAction implements IWorkbenchWindowActionDelegate{
 	private IWorkbenchWindow window;
@@ -50,7 +62,12 @@ public class AboutAction implements IWorkbenchWindowActionDelegate{
 
 class AboutDialog extends TitleAreaDialog {
 	private Shell shell;
-	private String aboutContent = "DS-PeMAT的输入是基于DDS中间件分布式系统的设计模型和性能度量指标，输出是系统设计方案的分析结果。";
+	private Image image = null;
+	private String aboutContent = "1. 支持基于DDS中间件分布式系统的共性功能建模，即实现DDS中间件模型部分的重用，主要包括消息发布模型、消息发送模型、消息接收模型等。\n"
+                                + "2. 支持基于DDS中间件分布式系统的整体模型建立，并提供非功能属性参数对性能进行量化，即有助于分析分布式系统部署模型的建立。\n"
+                                + "3. 支持模拟真实场景，以模型的方式描述在现实环境中所执行的场景，从而保证分析结果的正确性。\n"
+                                + "4. 支持面向性能模型的实时性分析和可靠性分析功能。实时性分析主要是分析系统从数据源接收到信息，经过多层节点对数据流进行处理，直至流向显示终端所消耗的时间。可靠性分析是指分析显示终端接收到来自数据源中数据的概率。\n"
+                                + "5. 人机交互界面：以可视化的方式输出分析结果。";
 
 	Text text;
 
@@ -63,6 +80,12 @@ class AboutDialog extends TitleAreaDialog {
 	public AboutDialog(Shell shell) {
 		super(shell);
 		this.shell = shell;
+		Bundle bundle = Platform.getBundle("edu.buaa.simulator");
+		final URL fullPathString = FileLocator.find(bundle, new Path("icons/logo.png"), null);
+
+		ImageDescriptor imageDesc = ImageDescriptor.createFromURL(fullPathString);
+
+		image = imageDesc.createImage();
 	}
 
 	/**
@@ -87,8 +110,11 @@ class AboutDialog extends TitleAreaDialog {
 		setTitle("About This Tool");
 
 		// Set the message
-		String titleContent = "DS_MePAT, Performance Modeling and Analysis Tool Based on DDS Middleware for Disributed System.";
-		setMessage(titleContent, IMessageProvider.INFORMATION);
+	//	String titleContent = "Performance Modeling and Analysis Tool Based on DDS Middleware for Disributed System";
+	//	setMessage(titleContent, IMessageProvider.INFORMATION);
+		if (image != null)
+			setTitleImage(image);
+		
 		return contents;
 	}
 
@@ -101,14 +127,19 @@ class AboutDialog extends TitleAreaDialog {
 	 */
 	protected Control createDialogArea(Composite parent) {
 		Composite composite = (Composite) super.createDialogArea(parent);
-
-		Label contentLabel = new Label(composite, SWT.NONE);
-		GridData data = new GridData(GridData.FILL_HORIZONTAL);
-		data.horizontalSpan = 1;
-		contentLabel.setLayoutData(data);
+	
+		Label contentLabel = new Label(composite, SWT.SEPARATOR | SWT.HORIZONTAL);
+		contentLabel.setLayoutData(new GridData(SWT.FILL, SWT.END, true, true));
 		
 		contentLabel.setText(aboutContent);
+	
 		return composite;
+	}
+	
+	@Override
+	public Point getInitialSize() {
+		Point p = new Point(900, 600);
+		return p;
 	}
 	
 }

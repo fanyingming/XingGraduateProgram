@@ -1,10 +1,17 @@
 package edu.buaa.sei.dialog;
 
+import java.net.URL;
+
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -13,10 +20,12 @@ import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.osgi.framework.Bundle;
 
 public class DirDialog extends TitleAreaDialog {
 	private Shell shell;
 	private String basePath;
+	private Image image = null;
 	Text text;
 
 	/**
@@ -28,6 +37,12 @@ public class DirDialog extends TitleAreaDialog {
 	public DirDialog(Shell shell) {
 		super(shell);
 		this.shell = shell;
+		Bundle bundle = Platform.getBundle("edu.buaa.simulator");
+		final URL fullPathString = FileLocator.find(bundle, new Path("icons/logo.png"), null);
+
+		ImageDescriptor imageDesc = ImageDescriptor.createFromURL(fullPathString);
+
+		image = imageDesc.createImage();
 	}
 
 	/**
@@ -54,6 +69,8 @@ public class DirDialog extends TitleAreaDialog {
 		// Set the message
 		String titleContent = "Please tell us where the UML model located.";
 		setMessage(titleContent, IMessageProvider.INFORMATION);
+		if (image != null)
+			setTitleImage(image);
 		return contents;
 	}
 
