@@ -19,6 +19,12 @@ public class AbstractPreferenceInitializer1 extends
         store.setDefault(Activator.PREF_PARAM_2, "0");
         store.setDefault(Activator.PREF_PARAM_3, "0");
         store.setDefault(Activator.PREF_PARAM_4, "0");
+        
+        store.setDefault(Activator.PREF_PARAM_5, "0");
+        store.setDefault(Activator.PREF_PARAM_6, "0");
+        store.setDefault(Activator.PREF_PARAM_7, "0");
+        store.setDefault(Activator.PREF_PARAM_8, "0");
+        
         store.setDefault(Activator.PREF_PARAM_MODEL_PATH, "");
 	}
 

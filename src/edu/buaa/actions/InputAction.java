@@ -70,26 +70,15 @@ class InputDialog extends TitleAreaDialog {
 	private Shell shell;
 	private Image image = null;
 	
-	private Text dataSizeText;
-	private Text delayText;
-	private Text dataSizeText_reliability;
-	private Text reliabilityText;
+	private Text dataSizeText1;
+	private Text delayText1;
+	private Text dataSizeText_reliability1;
+	private Text reliabilityText1;
+	private Text dataSizeText2;
+	private Text delayText2;
+	private Text dataSizeText_reliability2;
+	private Text reliabilityText2;
 	
-	public String getRealTimeDataSize() {
-		return dataSizeText.getText();
-	}
-	
-	public String getRealTimeDelay() {
-		return delayText.getText();
-	}
-	
-	public String getRealibilityDataSize() {
-		return dataSizeText_reliability.getText();
-	}
-	
-	public String getRealibility() {
-		return reliabilityText.getText();
-	}
 	Text text;
 
 	/**
@@ -101,7 +90,7 @@ class InputDialog extends TitleAreaDialog {
 	public InputDialog(Shell shell) {
 		super(shell);
 		this.shell = shell;
-		Bundle bundle = Platform.getBundle("edu.buaa.simulator");
+		Bundle bundle = Platform.getBundle("edu.buaa.dspemat");
 		final URL fullPathString = FileLocator.find(bundle, new Path(
 				"icons/logo.png"), null);
 
@@ -117,10 +106,15 @@ class InputDialog extends TitleAreaDialog {
 	public boolean close() {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		
-		store.setDefault(Activator.PREF_PARAM_1, getRealTimeDataSize());
-        store.setDefault(Activator.PREF_PARAM_2, getRealTimeDelay());
-        store.setDefault(Activator.PREF_PARAM_3, getRealibilityDataSize());
-        store.setDefault(Activator.PREF_PARAM_4, getRealibility());
+		store.setDefault(Activator.PREF_PARAM_1, this.dataSizeText1.getText());
+        store.setDefault(Activator.PREF_PARAM_2, this.delayText1.getText());
+        store.setDefault(Activator.PREF_PARAM_3, this.dataSizeText_reliability1.getText());
+        store.setDefault(Activator.PREF_PARAM_4, this.reliabilityText1.getText());
+        
+        store.setDefault(Activator.PREF_PARAM_5, this.dataSizeText2.getText());
+        store.setDefault(Activator.PREF_PARAM_6, this.delayText2.getText());
+        store.setDefault(Activator.PREF_PARAM_7, this.dataSizeText_reliability2.getText());
+        store.setDefault(Activator.PREF_PARAM_8, this.reliabilityText2.getText());
         
 		return super.close();
 	}
@@ -137,7 +131,7 @@ class InputDialog extends TitleAreaDialog {
 				.createContents((org.eclipse.swt.widgets.Composite) parent);
 
 		// Set the title
-		setTitle("Input");
+		setTitle("配置性能指标");
 
 		// Set the message
 		// String titleContent =
@@ -162,23 +156,36 @@ class InputDialog extends TitleAreaDialog {
 			Composite composite1 = new Composite(testGroup, SWT.NONE);
 			GridLayout layoutComposite = new GridLayout();
 			layoutComposite.numColumns = 4;
-			layoutComposite.marginHeight = 1;
+			layoutComposite.marginHeight = 5;
 			composite1.setLayout(layoutComposite);
 			composite1.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
 					true, 4, 1));
 		}
 		{
-			Label dataSizeLabel = new Label(testGroup, SWT.NONE);
-			dataSizeLabel.setText("数据大小:");
+			Label dataSizeLabel1 = new Label(testGroup, SWT.NONE);
+			dataSizeLabel1.setText("数据大小1(KB): ");
 
-			dataSizeText = new Text(testGroup, SWT.BORDER);
-			dataSizeText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+			dataSizeText1 = new Text(testGroup, SWT.BORDER);
+			dataSizeText1.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 			
-			Label delayLabel = new Label(testGroup, SWT.NONE);
-			delayLabel.setText("时延:");
+			Label delayLabel1 = new Label(testGroup, SWT.NONE);
+			delayLabel1.setText("最大时延1(ms): ");
 
-			delayText = new Text(testGroup, SWT.BORDER);
-			delayText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+			delayText1 = new Text(testGroup, SWT.BORDER);
+			delayText1.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+			
+			//new
+			Label dataSizeLabel2 = new Label(testGroup, SWT.NONE);
+			dataSizeLabel2.setText("数据大小2(KB): ");
+
+			dataSizeText2 = new Text(testGroup, SWT.BORDER);
+			dataSizeText2.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+			
+			Label delayLabel2 = new Label(testGroup, SWT.NONE);
+			delayLabel2.setText("最大时延2(ms): ");
+
+			delayText2 = new Text(testGroup, SWT.BORDER);
+			delayText2.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		}
 	}
 	
@@ -195,23 +202,36 @@ class InputDialog extends TitleAreaDialog {
 			Composite composite1 = new Composite(testGroup, SWT.NONE);
 			GridLayout layoutComposite = new GridLayout();
 			layoutComposite.numColumns = 4;
-			layoutComposite.marginHeight = 1;
+			layoutComposite.marginHeight = 5;
 			composite1.setLayout(layoutComposite);
 			composite1.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
 					true, 4, 1));
 		}
 		{
-			Label dataSizeLabel = new Label(testGroup, SWT.NONE);
-			dataSizeLabel.setText("数据大小:");
+			Label dataSizeLabel1 = new Label(testGroup, SWT.NONE);
+			dataSizeLabel1.setText("数据大小1(KB): ");
 
-			dataSizeText_reliability = new Text(testGroup, SWT.BORDER);
-			dataSizeText_reliability.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+			dataSizeText_reliability1 = new Text(testGroup, SWT.BORDER);
+			dataSizeText_reliability1.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		
-			Label delayLabel = new Label(testGroup, SWT.NONE);
-			delayLabel.setText("可靠性:");
+			Label delayLabel1 = new Label(testGroup, SWT.NONE);
+			delayLabel1.setText("可靠性1(%): ");
 
-			reliabilityText = new Text(testGroup, SWT.BORDER);
-			reliabilityText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+			reliabilityText1 = new Text(testGroup, SWT.BORDER);
+			reliabilityText1.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+			
+			//new
+			Label dataSizeLabel2 = new Label(testGroup, SWT.NONE);
+			dataSizeLabel2.setText("数据大小2(KB): ");
+
+			dataSizeText_reliability2 = new Text(testGroup, SWT.BORDER);
+			dataSizeText_reliability2.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		
+			Label delayLabel2 = new Label(testGroup, SWT.NONE);
+			delayLabel2.setText("可靠性2(%): ");
+
+			reliabilityText2 = new Text(testGroup, SWT.BORDER);
+			reliabilityText2.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		}
 	}
 	
@@ -230,10 +250,15 @@ class InputDialog extends TitleAreaDialog {
 		createInput2(composite);
 		
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
-		dataSizeText.setText(store.getString(Activator.PREF_PARAM_1));
-		delayText.setText(store.getString(Activator.PREF_PARAM_2));
-		dataSizeText_reliability.setText(store.getString(Activator.PREF_PARAM_3));
-		reliabilityText.setText(store.getString(Activator.PREF_PARAM_4));
+		dataSizeText1.setText(store.getString(Activator.PREF_PARAM_1));
+		delayText1.setText(store.getString(Activator.PREF_PARAM_2));
+		dataSizeText_reliability1.setText(store.getString(Activator.PREF_PARAM_3));
+		reliabilityText1.setText(store.getString(Activator.PREF_PARAM_4));
+		
+		dataSizeText2.setText(store.getString(Activator.PREF_PARAM_5));
+		delayText2.setText(store.getString(Activator.PREF_PARAM_6));
+		dataSizeText_reliability2.setText(store.getString(Activator.PREF_PARAM_7));
+		reliabilityText2.setText(store.getString(Activator.PREF_PARAM_8));
 
 		return composite;
 	}

@@ -40,7 +40,7 @@ public class DirDialog extends TitleAreaDialog {
 	public DirDialog(Shell shell) {
 		super(shell);
 		this.shell = shell;
-		Bundle bundle = Platform.getBundle("edu.buaa.simulator");
+		Bundle bundle = Platform.getBundle("edu.buaa.dspemat");
 		final URL fullPathString = FileLocator.find(bundle, new Path("icons/logo.png"), null);
 
 		ImageDescriptor imageDesc = ImageDescriptor.createFromURL(fullPathString);

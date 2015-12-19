@@ -38,7 +38,7 @@ public class ChartDialog extends TitleAreaDialog {
 	public ChartDialog(Shell shell) {
 		super(shell);
 		this.shell = shell;
-		Bundle bundle = Platform.getBundle("edu.buaa.simulator");
+		Bundle bundle = Platform.getBundle("edu.buaa.dspemat");
 		final URL fullPathString = FileLocator.find(bundle, new Path(
 				"icons/logo.png"), null);
 

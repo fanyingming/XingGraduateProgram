@@ -38,7 +38,7 @@ public class ResultDialog extends TitleAreaDialog {
 	 */
 	public ResultDialog(Shell shell) {
 		super(shell);
-		Bundle bundle = Platform.getBundle("edu.buaa.simulator");
+		Bundle bundle = Platform.getBundle("edu.buaa.dspemat");
 		final URL fullPathString = FileLocator.find(bundle, new Path(
 				"icons/logo.png"), null);
 

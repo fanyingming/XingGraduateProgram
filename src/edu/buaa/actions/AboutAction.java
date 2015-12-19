@@ -80,7 +80,7 @@ class AboutDialog extends TitleAreaDialog {
 	public AboutDialog(Shell shell) {
 		super(shell);
 		this.shell = shell;
-		Bundle bundle = Platform.getBundle("edu.buaa.simulator");
+		Bundle bundle = Platform.getBundle("edu.buaa.dspemat");
 		final URL fullPathString = FileLocator.find(bundle, new Path("icons/logo.png"), null);
 
 		ImageDescriptor imageDesc = ImageDescriptor.createFromURL(fullPathString);
@@ -107,7 +107,7 @@ class AboutDialog extends TitleAreaDialog {
 				.createContents((org.eclipse.swt.widgets.Composite) parent);
 
 		// Set the title
-		setTitle("About This Tool");
+		setTitle("About");
 
 		// Set the message
 	//	String titleContent = "Performance Modeling and Analysis Tool Based on DDS Middleware for Disributed System";
