@@ -9,12 +9,21 @@
             visible="true"
             id="edu.buaa.actionSet">
          <menu
-               label="Simulator"
+               label="DS-PeMAT"
                id="sampleMenu">
             <separator
                   name="sampleGroup">
             </separator>
          </menu>
+         <action
+               label="About"
+               icon="icons/sample.gif"
+               class="edu.buaa.actions.AboutAction"
+               tooltip="About DS-PeMAT"
+               menubarPath="sampleMenu/sampleGroup"
+               toolbarPath="sampleGroup"
+               id="edu.buaa.actions.AboutAction">
+         </action>
          <action
                label="Run"
                icon="icons/heart.png"
@@ -24,15 +33,7 @@
                toolbarPath="sampleGroup"
                id="edu.buaa.actions.SampleAction">
          </action>
-         <action
-               label="About"
-               icon="icons/sample.gif"
-               class="edu.buaa.actions.AboutAction"
-               tooltip="About simulate DDS model"
-               menubarPath="sampleMenu/sampleGroup"
-               toolbarPath="sampleGroup"
-               id="edu.buaa.actions.AboutAction">
-         </action>
+         
          <action
                label="input"
                icon="icons/sample.gif"
