@@ -16,6 +16,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.osgi.framework.Bundle;
 import org.swtchart.Chart;
@@ -88,6 +89,13 @@ public class ChartDialog extends TitleAreaDialog {
         chart.getAxisSet().getXAxis(0).getTitle().setText("Node Name");
         chart.getAxisSet().getYAxis(0).getTitle().setText("Reliability(%)");
         
+      //set chart foreground color to black
+        Color black = new Color(Display.getDefault(), 0,0,0);
+        chart.getTitle().setForeground(black);
+        chart.getAxisSet().getXAxis(0).getTitle().setForeground(black);
+        chart.getAxisSet().getYAxis(0).getTitle().setForeground(black);
+        chart.getAxisSet().getXAxis(0).getTick().setForeground(black);
+        chart.getAxisSet().getYAxis(0).getTick().setForeground(black);
 
         String[] strList = new String[resList.size()];
         double[] reliaList = new double[resList.size()];
@@ -108,7 +116,8 @@ public class ChartDialog extends TitleAreaDialog {
         barSeries1.setYSeries(reliaList);
         
         barSeries1.setBarPadding(50);
-        Color color = new Color(parent.getDisplay().getDefault(), 80, 240, 180);
+      //éÙ»Æ
+        Color color = new Color(Display.getDefault(), 235,165,51);
         barSeries1.setBarColor(color);
  
         chart.getAxisSet().adjustRange();
@@ -120,6 +129,14 @@ public class ChartDialog extends TitleAreaDialog {
         chart.getTitle().setText("Time Chart");
         chart.getAxisSet().getXAxis(0).getTitle().setText("Node Name");
         chart.getAxisSet().getYAxis(0).getTitle().setText("Time(ms)");
+        
+      //set chart foreground color to black
+   //     Color black = new Color(Display.getDefault(), 0,0,0);
+        chart.getTitle().setForeground(black);
+        chart.getAxisSet().getXAxis(0).getTitle().setForeground(black);
+        chart.getAxisSet().getYAxis(0).getTitle().setForeground(black);
+        chart.getAxisSet().getXAxis(0).getTick().setForeground(black);
+        chart.getAxisSet().getYAxis(0).getTick().setForeground(black);
         
         for (int i = 0; i < resList.size(); i++) {
         	strList[i] = resList.get(i).name;
@@ -135,6 +152,9 @@ public class ChartDialog extends TitleAreaDialog {
                 SeriesType.BAR, "Time");
         barSeries11.setYSeries(timeList);
         barSeries11.setBarPadding(50);
+      //éÙ»Æ
+        Color color1 = new Color(Display.getDefault(), 42,86,130);
+        barSeries11.setBarColor(color1);
 
         // adjust the axis range
         chart.getAxisSet().adjustRange();

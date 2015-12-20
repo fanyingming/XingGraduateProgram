@@ -197,14 +197,17 @@ public class DDS {
 	
 	public double recursiveGetReliability(Publisher pub) {
 		double reliability = 1;
+		ArrayList<String> reliabilityPubId = new ArrayList<String>();
 		
 		for (int i = 0; i < dependencyList.size(); i++) {
 			Dependency dep = dependencyList.get(i);
 			if (dep.getDstPublisher().getPublisherId().equals(pub.getPublisherId())) {
 				reliability *= dep.getReliability() * recursiveGetReliability(dep.getSrcPublisher());
+				reliabilityPubId.add(dep.getSrcPublisher().getPublisherId());
 			}
 		}
-		
+		pub.setReliability(reliability);
+		pub.setReliabilityPubId(reliabilityPubId);
 		return reliability;
 	}
 	

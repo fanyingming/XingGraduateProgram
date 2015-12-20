@@ -28,7 +28,37 @@ public class Publisher {
 	private double upLevelTime = 0;
 	
 	private ArrayList<String> sonId = new ArrayList<String> ();
+	
+	private ArrayList<String> reliabilityPubId = null;
+	
+	private double reliability = 0;
+	
+	private int depth = 0;
 
+
+	public int getDepth() {
+		return depth;
+	}
+
+	public void setDepth(int depth) {
+		this.depth = depth;
+	}
+
+	public ArrayList<String> getReliabilityPubId() {
+		return reliabilityPubId;
+	}
+
+	public void setReliabilityPubId(ArrayList<String> reliabilityPubId) {
+		this.reliabilityPubId = reliabilityPubId;
+	}
+
+	public double getReliability() {
+		return reliability;
+	}
+
+	public void setReliability(double reliability) {
+		this.reliability = reliability;
+	}
 
 	public double getUpLevelTime() {
 		return upLevelTime;
