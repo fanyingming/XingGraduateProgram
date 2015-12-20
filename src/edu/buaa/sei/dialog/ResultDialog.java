@@ -19,6 +19,8 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
@@ -30,6 +32,7 @@ import edu.buaa.sei.datamodel.Result;
 import edu.buaa.sei.datamodel.internalResult;
 
 public class ResultDialog extends TitleAreaDialog {
+	Shell shell;
 	public ArrayList<Result> resList;
 	public ArrayList<internalResult> internalList;
 	public String schedPolicy;
@@ -60,6 +63,7 @@ public class ResultDialog extends TitleAreaDialog {
 
 		image = imageDesc.createImage();
 		getConfig();
+		this.shell = shell;
 	}
 
 	/**
@@ -95,25 +99,27 @@ public class ResultDialog extends TitleAreaDialog {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		String realtime_datasize1_str = store.getString(Activator.PREF_PARAM_1);
 		String max_delay1_str = store.getString(Activator.PREF_PARAM_2);
-		String reliability_dataSize1_str = store.getString(Activator.PREF_PARAM_3);
+		String reliability_dataSize1_str = store
+				.getString(Activator.PREF_PARAM_3);
 		String max_reliability1_str = store.getString(Activator.PREF_PARAM_4);
-		
+
 		realtime_dataSize1 = Integer.parseInt(realtime_datasize1_str);
 		max_delay1 = Double.parseDouble(max_delay1_str);
 		reliability_dataSize1 = Integer.parseInt(reliability_dataSize1_str);
 		max_reliability1 = Double.parseDouble(max_reliability1_str);
-		
+
 		String realtime_datasize2_str = store.getString(Activator.PREF_PARAM_5);
 		String max_delay2_str = store.getString(Activator.PREF_PARAM_6);
-		String reliability_dataSize2_str = store.getString(Activator.PREF_PARAM_7);
+		String reliability_dataSize2_str = store
+				.getString(Activator.PREF_PARAM_7);
 		String max_reliability2_str = store.getString(Activator.PREF_PARAM_8);
-		
+
 		realtime_dataSize2 = Integer.parseInt(realtime_datasize2_str);
 		max_delay2 = Double.parseDouble(max_delay2_str);
 		reliability_dataSize2 = Integer.parseInt(reliability_dataSize2_str);
 		max_reliability2 = Double.parseDouble(max_reliability2_str);
 	}
-	
+
 	/**
 	 * Creates the gray area
 	 * 
@@ -159,7 +165,7 @@ public class ResultDialog extends TitleAreaDialog {
 			item.setText(5, lostPackage2st);
 			item.setText(6, time);
 			item.setText(7, reliability);
-			
+
 			Color red = Display.getDefault().getSystemColor(SWT.COLOR_RED);
 			if (this.realtime_dataSize1 > 0 && this.realtime_dataSize2 > 0) {
 				if (dataSize <= this.realtime_dataSize1) {
@@ -172,8 +178,9 @@ public class ResultDialog extends TitleAreaDialog {
 					}
 				}
 			}
-			
-			if (this.reliability_dataSize1 > 0 && this.reliability_dataSize2 > 0) {
+
+			if (this.reliability_dataSize1 > 0
+					&& this.reliability_dataSize2 > 0) {
 				if (dataSize <= this.reliability_dataSize1) {
 					if (reliability_cur < this.max_reliability1) {
 						item.setBackground(7, red);
@@ -184,13 +191,13 @@ public class ResultDialog extends TitleAreaDialog {
 					}
 				}
 			}
-			
+
 		}
 		for (int i = 0; i < titles1.length; i++) {
 			table1.getColumn(i).pack();
 		}
 
-		Table table = new Table(composite, SWT.MULTI | SWT.BORDER
+		Table table = new Table(composite, SWT.SINGLE | SWT.BORDER
 				| SWT.FULL_SELECTION);
 		table.setLayoutData(new GridData(GridData.FILL_BOTH));
 		table.setLinesVisible(true);
@@ -208,17 +215,33 @@ public class ResultDialog extends TitleAreaDialog {
 			item.setText(0, name);
 			item.setText(1, relia);
 			item.setText(2, time);
+
 		}
 		for (int i = 0; i < titles.length; i++) {
 			table.getColumn(i).pack();
 		}
+		table.addListener(SWT.Selection, new Listener() {
+
+			@Override
+			public void handleEvent(Event event) {
+				String string = "";
+		        TableItem[] selection = table.getSelection();
+		        if (selection == null || selection.length == 0)
+		        	return;
+		        String nodeName = selection[0].getText(0);
+		        System.out.println(nodeName);
+		        NodeChartDialog nodeChartDialog = new NodeChartDialog(shell);
+		        nodeChartDialog.title = nodeName;
+		        nodeChartDialog.open();
+			}
+		});
 		return composite;
 	}
-	
+
 	public void okPressed() {
 		super.okPressed();
 	}
-	
+
 	/**
 	 * Creates the buttons for the button bar
 	 * 
@@ -228,7 +251,6 @@ public class ResultDialog extends TitleAreaDialog {
 	protected void createButtonsForButtonBar(Composite parent) {
 		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL,
 				true);
-		createButton(parent, IDialogConstants.CANCEL_ID, "Show Chart",
-				true);
+		createButton(parent, IDialogConstants.CANCEL_ID, "Show Chart", true);
 	}
 }

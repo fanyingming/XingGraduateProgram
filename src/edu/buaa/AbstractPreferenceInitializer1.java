@@ -25,7 +25,7 @@ public class AbstractPreferenceInitializer1 extends
         store.setDefault(Activator.PREF_PARAM_7, "0");
         store.setDefault(Activator.PREF_PARAM_8, "0");
         
-        store.setDefault(Activator.PREF_PARAM_MODEL_PATH, "");
+        store.setDefault(Activator.PREF_PARAM_MODEL_PATH, "C:\\GigRepo\\XingGraduateProgram\\CaseStudy");
 	}
 
 }
