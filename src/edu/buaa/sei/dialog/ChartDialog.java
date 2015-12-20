@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.osgi.framework.Bundle;
 import org.swtchart.Chart;
 import org.swtchart.IBarSeries;
+import org.swtchart.Range;
 import org.swtchart.ISeries.SeriesType;
 
 import edu.buaa.sei.datamodel.Result;
@@ -78,8 +79,12 @@ public class ChartDialog extends TitleAreaDialog {
 		return contents;
 	}
 
+	private int max(int i, int j) {
+		// TODO Auto-generated method stub
+		return i >= j ? i : j;
+	}
 
-	private Chart createChart(final Composite parent)
+	private void createChart(final Composite parent)
     {
 		// create a chart
         Chart chart = new Chart(parent, SWT.NONE);
@@ -101,10 +106,20 @@ public class ChartDialog extends TitleAreaDialog {
         double[] reliaList = new double[resList.size()];
         double[] timeList = new double[resList.size()];
         
+        int range_min = (int) resList.get(0).reliability;
+        int range_max = (int) resList.get(0).reliability;
         for (int i = 0; i < resList.size(); i++) {
         	strList[i] = resList.get(i).name;
         	reliaList[i] = resList.get(i).reliability;
         	timeList[i] = resList.get(i).time;
+        	
+        	int num = (int)reliaList[i];
+        	if (num >= range_max) {
+        		range_max = num;
+        	}
+        	if (num <= range_min) {
+        		range_min = num;
+        	}
         }
         // set category
         chart.getAxisSet().getXAxis(0).enableCategory(true);
@@ -122,21 +137,25 @@ public class ChartDialog extends TitleAreaDialog {
  
         chart.getAxisSet().adjustRange();
         
+        range_min = max(0, range_min-10);
+        range_max += 5;
+        chart.getAxisSet().getYAxis(0).setRange(new Range(range_min, range_max));
+        
         //another chart.
-        chart = new Chart(parent, SWT.NONE);
+        Chart chart1 = new Chart(parent, SWT.NONE);
         
      // set titles
-        chart.getTitle().setText("Time");
-        chart.getAxisSet().getXAxis(0).getTitle().setText("Node Name");
-        chart.getAxisSet().getYAxis(0).getTitle().setText("Time(ms)");
+        chart1.getTitle().setText("Time");
+        chart1.getAxisSet().getXAxis(0).getTitle().setText("Node Name");
+        chart1.getAxisSet().getYAxis(0).getTitle().setText("Time(ms)");
         
       //set chart foreground color to black
    //     Color black = new Color(Display.getDefault(), 0,0,0);
-        chart.getTitle().setForeground(black);
-        chart.getAxisSet().getXAxis(0).getTitle().setForeground(black);
-        chart.getAxisSet().getYAxis(0).getTitle().setForeground(black);
-        chart.getAxisSet().getXAxis(0).getTick().setForeground(black);
-        chart.getAxisSet().getYAxis(0).getTick().setForeground(black);
+        chart1.getTitle().setForeground(black);
+        chart1.getAxisSet().getXAxis(0).getTitle().setForeground(black);
+        chart1.getAxisSet().getYAxis(0).getTitle().setForeground(black);
+        chart1.getAxisSet().getXAxis(0).getTick().setForeground(black);
+        chart1.getAxisSet().getYAxis(0).getTick().setForeground(black);
         
         for (int i = 0; i < resList.size(); i++) {
         	strList[i] = resList.get(i).name;
@@ -144,11 +163,11 @@ public class ChartDialog extends TitleAreaDialog {
         	timeList[i] = resList.get(i).time;
         }
         // set category
-        chart.getAxisSet().getXAxis(0).enableCategory(true);
-        chart.getAxisSet().getXAxis(0).setCategorySeries(strList);
+        chart1.getAxisSet().getXAxis(0).enableCategory(true);
+        chart1.getAxisSet().getXAxis(0).setCategorySeries(strList);
 
         // create bar series
-        IBarSeries barSeries11 = (IBarSeries) chart.getSeriesSet().createSeries(
+        IBarSeries barSeries11 = (IBarSeries) chart1.getSeriesSet().createSeries(
                 SeriesType.BAR, "Time");
         barSeries11.setYSeries(timeList);
         barSeries11.setBarPadding(50);
@@ -157,8 +176,8 @@ public class ChartDialog extends TitleAreaDialog {
         barSeries11.setBarColor(color1);
 
         // adjust the axis range
-        chart.getAxisSet().adjustRange();
-        return chart;
+        chart1.getAxisSet().adjustRange();
+       
     }
 	
 	/**
