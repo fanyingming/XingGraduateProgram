@@ -28,6 +28,7 @@ import org.swtchart.IBarSeries;
 import org.swtchart.ILineSeries;
 import org.swtchart.ISeries.SeriesType;
 import org.swtchart.ISeriesLabel;
+import org.swtchart.Range;
 
 import edu.buaa.sei.datamodel.Dependency;
 import edu.buaa.sei.datamodel.Result;
@@ -132,9 +133,18 @@ public class NodeChartDialog extends TitleAreaDialog{
         String[] nameList = new String[reliaPubList.size()];
         double[] reliaList = new double[reliaPubList.size()];
         int j = 0;
+        int range_min = (int) (reliaPubList.get(0).getReliability()*100);
+        int range_max = (int) (reliaPubList.get(0).getReliability()*100);
         for (int i = this.reliaPubList.size()-1; i >=0 ; i--, j++) {
         	nameList[j] = reliaPubList.get(i).getPublisherName();
         	reliaList[j] = reliaPubList.get(i).getReliability()*100;
+        	int num = (int)reliaList[j];
+        	if (num >= range_max) {
+        		range_max = num;
+        	}
+        	if (num <= range_min) {
+        		range_min = num;
+        	}
         }
         // set category
         chart.getAxisSet().getXAxis(0).enableCategory(true);
@@ -151,8 +161,17 @@ public class NodeChartDialog extends TitleAreaDialog{
         barSeries1.setBarColor(color1);
         
         chart.getAxisSet().adjustRange();
+       
+        range_min = max(0, range_min-10);
+        range_max += 5;
+        chart.getAxisSet().getYAxis(0).setRange(new Range(range_min, range_max));
 	}
 	
+	private int max(int i, int j) {
+		// TODO Auto-generated method stub
+		return i >= j ? i : j;
+	}
+
 	private void showTimeChart(Composite composite) {
 		// create a chart
         Chart chart = new Chart(composite, SWT.NONE);
