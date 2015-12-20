@@ -107,11 +107,11 @@ class AboutDialog extends TitleAreaDialog {
 				.createContents((org.eclipse.swt.widgets.Composite) parent);
 
 		// Set the title
-		setTitle("About");
+		setTitle("¹ØÓÚDS-PeMAT");
 
 		// Set the message
-	//	String titleContent = "Performance Modeling and Analysis Tool Based on DDS Middleware for Disributed System";
-	//	setMessage(titleContent, IMessageProvider.INFORMATION);
+		String titleContent = "Copyright (c) 2015 Yaxing Zhao";
+		setMessage(titleContent, IMessageProvider.INFORMATION);
 		if (image != null)
 			setTitleImage(image);
 		
@@ -127,17 +127,27 @@ class AboutDialog extends TitleAreaDialog {
 	 */
 	protected Control createDialogArea(Composite parent) {
 		Composite composite = (Composite) super.createDialogArea(parent);
-	
-		Text content = new Text(shell, SWT.WRAP|SWT.V_SCROLL|SWT.READ_ONLY); 
+		GridData data = new GridData(GridData.FILL_HORIZONTAL);
+		data.horizontalSpan = 1;
+		
+		Text content = new Text(composite, SWT.MULTI|SWT.WRAP|SWT.V_SCROLL|SWT.READ_ONLY); 
 		content.setText(aboutContent);
+		content.setLayoutData(data);
 		return composite;
 	}
-/*	
+
 	@Override
 	public Point getInitialSize() {
-		Point p = new Point(500, 400);
+		Point p = new Point(900, 600);
 		return p;
 	}
-	*/
+	
+	@Override
+	
+    protected void setShellStyle(final int newShellStyle)
+    {
+        super.setShellStyle(newShellStyle | SWT.RESIZE);    
+    }
+	
 }
 
