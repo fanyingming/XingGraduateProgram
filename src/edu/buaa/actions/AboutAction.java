@@ -138,7 +138,7 @@ class AboutDialog extends TitleAreaDialog {
 
 	@Override
 	public Point getInitialSize() {
-		Point p = new Point(900, 600);
+		Point p = new Point(520, 400);
 		return p;
 	}
 	
