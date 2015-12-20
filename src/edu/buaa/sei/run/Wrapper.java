@@ -15,8 +15,22 @@ public class Wrapper {
 	
 	ArrayList<internalResult> finalInternalResults;
 	
+	ArrayList<Dependency> dependencyList;
+	
+	ArrayList<Publisher> publisherList;
+	
 	String schedPolicy;
 	
+	public ArrayList<Publisher> getPublisherList() {
+		return publisherList;
+	}
+
+
+	public void setPublisherList(ArrayList<Publisher> publisherList) {
+		this.publisherList = publisherList;
+	}
+
+
 	public void run(String nodeSendPath, String sendPath, String reveivePath, String transportPath,
 			String publisherPath) throws IOException, ParserConfigurationException, SAXException {
 		//setp 1: parse uml.
@@ -37,11 +51,23 @@ public class Wrapper {
 		double speedMax = transporter.speedMax();
 		//step 2: 
 		DDS dds = new DDS();
-		dds.getAllDependency(publisherPath);
+		dependencyList = dds.getAllDependency(publisherPath);
 		dds.calculateDependency(sender, receiver, speedMin, speedMax);
 		finalInternalResults = dds.showDependencyInfo();
 		finalResults = dds.showResults();
+		publisherList = dds.getPublisherList();
 	}
+
+	
+	public ArrayList<Dependency> getDependencyList() {
+		return dependencyList;
+	}
+
+
+	public void setDependencyList(ArrayList<Dependency> dependencyList) {
+		this.dependencyList = dependencyList;
+	}
+
 
 	public ArrayList<Result> getFinalResults() {
 		return finalResults;

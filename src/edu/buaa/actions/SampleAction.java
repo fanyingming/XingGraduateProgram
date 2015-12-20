@@ -103,6 +103,8 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 
 		ArrayList<Result> resList = new ArrayList<Result>();
 		ArrayList<internalResult> internalList = new ArrayList<internalResult>();
+		ArrayList<Dependency> dependencyList = new ArrayList<Dependency>();
+		ArrayList<Publisher> publisherList = null;
 		String schedPolicy = null;
 		try {
 			Wrapper wrapper = new Wrapper();
@@ -111,6 +113,8 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 			resList = wrapper.getFinalResults();
 			internalList = wrapper.getFinalInternalResults();
 			schedPolicy = wrapper.getSchedPolicy();
+			dependencyList = wrapper.getDependencyList();
+			publisherList = wrapper.getPublisherList();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -129,6 +133,8 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 		dlg.resList = resList;
 		dlg.internalList = internalList;
 		dlg.schedPolicy = schedPolicy;
+		dlg.dependencyList = dependencyList;
+		dlg.publisherList = publisherList;
 		int rv = dlg.open();
 		if (rv != Window.OK ) {
 			ChartDialog chartDlg = new ChartDialog(window.getShell());

@@ -23,7 +23,28 @@ public class Publisher {
 	
 	private String publisherId;
 	
+	private String upLevelPublisherId = "";
+	
+	private double upLevelTime = 0;
+	
 	private ArrayList<String> sonId = new ArrayList<String> ();
+
+
+	public double getUpLevelTime() {
+		return upLevelTime;
+	}
+
+	public void setUpLevelTime(double upLevelTime) {
+		this.upLevelTime = upLevelTime;
+	}
+
+	public String getUpLevelPublisherId() {
+		return upLevelPublisherId;
+	}
+
+	public void setUpLevelPublisherId(String upLevelPublisherId) {
+		this.upLevelPublisherId = upLevelPublisherId;
+	}
 
 	public String getPublisherName() {
 		return publisherName;

@@ -29,6 +29,23 @@ public class DDS {
 	
 	ArrayList <SendData> sendDataList = new ArrayList <SendData>();
 	
+	
+	public ArrayList<Dependency> getDependencyList() {
+		return dependencyList;
+	}
+
+	public void setDependencyList(ArrayList<Dependency> dependencyList) {
+		this.dependencyList = dependencyList;
+	}
+
+	public ArrayList<Publisher> getPublisherList() {
+		return publisherList;
+	}
+
+	public void setPublisherList(ArrayList<Publisher> publisherList) {
+		this.publisherList = publisherList;
+	}
+
 	public Publisher getPublisherByBonId(String sonId) {
 		for (int i = 0; i < publisherList.size(); i++) {
 			Publisher pub = publisherList.get(i);
@@ -66,7 +83,7 @@ public class DDS {
 		return null;
 	}
 	
-	public void getAllDependency(String umlPath) 
+	public ArrayList<Dependency> getAllDependency(String umlPath) 
 			throws ParserConfigurationException, SAXException, IOException {
 		File fXmlFile = new File(umlPath);
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -108,7 +125,7 @@ public class DDS {
 
 			}
 		}
-		
+		return dependencyList;
 		
 	}
 	
@@ -159,7 +176,7 @@ public class DDS {
 	
 	public double recursiveGetTime(Publisher pub) {
 		double maxTime = -1;
-		
+		String maxTimePublisherId = "";
 		for (int i = 0; i < dependencyList.size(); i++) {
 			Dependency dep = dependencyList.get(i);
 			if (dep.getDstPublisher().getPublisherId().equals(pub.getPublisherId())) {
@@ -167,12 +184,14 @@ public class DDS {
 				
 				if (curTime >= maxTime) {
 					maxTime = curTime;
+					maxTimePublisherId = dep.getSrcPublisher().getPublisherId();
 				}
 			}
 		}
 		if (maxTime == -1)
 			return 0;
-		
+		pub.setUpLevelPublisherId(maxTimePublisherId);
+		pub.setUpLevelTime(maxTime);
 		return maxTime;
 	}
 	

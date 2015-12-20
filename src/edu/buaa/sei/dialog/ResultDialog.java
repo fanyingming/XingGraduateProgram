@@ -28,13 +28,17 @@ import org.eclipse.swt.widgets.TableItem;
 import org.osgi.framework.Bundle;
 
 import edu.buaa.Activator;
+import edu.buaa.sei.datamodel.Dependency;
 import edu.buaa.sei.datamodel.Result;
 import edu.buaa.sei.datamodel.internalResult;
+import edu.buaa.sei.run.Publisher;
 
 public class ResultDialog extends TitleAreaDialog {
 	Shell shell;
 	public ArrayList<Result> resList;
 	public ArrayList<internalResult> internalList;
+	public ArrayList<Dependency> dependencyList;
+	public ArrayList<Publisher> publisherList;
 	public String schedPolicy;
 	private Image image = null;
 	private int realtime_dataSize1;
@@ -232,6 +236,10 @@ public class ResultDialog extends TitleAreaDialog {
 		        System.out.println(nodeName);
 		        NodeChartDialog nodeChartDialog = new NodeChartDialog(shell);
 		        nodeChartDialog.title = nodeName;
+		        nodeChartDialog.internalList = internalList;
+		        nodeChartDialog.resList = resList;
+		        nodeChartDialog.dependencyList = dependencyList;
+		        nodeChartDialog.publisherList = publisherList;
 		        nodeChartDialog.open();
 			}
 		});
