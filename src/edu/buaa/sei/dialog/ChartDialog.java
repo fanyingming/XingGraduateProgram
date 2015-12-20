@@ -68,10 +68,10 @@ public class ChartDialog extends TitleAreaDialog {
 				.createContents((org.eclipse.swt.widgets.Composite) parent);
 
 		// Set the title
-		setTitle("CHART");
+		setTitle("系统的实时性和可靠性显示结果");
 
 		// Set the message
-		String titleContent = "...";
+		String titleContent = "";
 		setMessage(titleContent, IMessageProvider.INFORMATION);
 		if (image != null)
 			setTitleImage(image);
@@ -85,7 +85,7 @@ public class ChartDialog extends TitleAreaDialog {
         Chart chart = new Chart(parent, SWT.NONE);
 
         // set titles
-        chart.getTitle().setText("Reliability Chart");
+        chart.getTitle().setText("Reliability");
         chart.getAxisSet().getXAxis(0).getTitle().setText("Node Name");
         chart.getAxisSet().getYAxis(0).getTitle().setText("Reliability(%)");
         
@@ -116,8 +116,8 @@ public class ChartDialog extends TitleAreaDialog {
         barSeries1.setYSeries(reliaList);
         
         barSeries1.setBarPadding(50);
-      //橘黄
-        Color color = new Color(Display.getDefault(), 235,165,51);
+      //橙色
+        Color color = new Color(Display.getDefault(), 237,120,41);
         barSeries1.setBarColor(color);
  
         chart.getAxisSet().adjustRange();
@@ -126,7 +126,7 @@ public class ChartDialog extends TitleAreaDialog {
         chart = new Chart(parent, SWT.NONE);
         
      // set titles
-        chart.getTitle().setText("Time Chart");
+        chart.getTitle().setText("Time");
         chart.getAxisSet().getXAxis(0).getTitle().setText("Node Name");
         chart.getAxisSet().getYAxis(0).getTitle().setText("Time(ms)");
         
@@ -152,8 +152,8 @@ public class ChartDialog extends TitleAreaDialog {
                 SeriesType.BAR, "Time");
         barSeries11.setYSeries(timeList);
         barSeries11.setBarPadding(50);
-      //橘黄
-        Color color1 = new Color(Display.getDefault(), 42,86,130);
+        //蓝色
+        Color color1 = new Color(Display.getDefault(), 91,155,213);
         barSeries11.setBarColor(color1);
 
         // adjust the axis range

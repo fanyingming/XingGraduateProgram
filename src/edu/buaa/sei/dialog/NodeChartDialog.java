@@ -75,7 +75,7 @@ public class NodeChartDialog extends TitleAreaDialog{
 				.createContents((org.eclipse.swt.widgets.Composite) parent);
 
 		// Set the title
-		setTitle(title);
+		setTitle("数据流所经过的节点所消耗的时延和可靠性");
 
 		// Set the message
 	//	String titleContent = "Performance Modeling and Analysis Tool Based on DDS Middleware for Disributed System";
@@ -143,9 +143,9 @@ public class NodeChartDialog extends TitleAreaDialog{
                 SeriesType.BAR, "Reliability");
         barSeries1.setYSeries(reliaList);
         
-        //橘黄
-        Color color = new Color(Display.getDefault(), 235,165,51);
-        barSeries1.setBarColor(color);
+      //蓝色
+        Color color1 = new Color(Display.getDefault(), 91,155,213);
+        barSeries1.setBarColor(color1);
         
         chart.getAxisSet().adjustRange();
 	}
