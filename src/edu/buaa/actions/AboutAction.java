@@ -128,19 +128,16 @@ class AboutDialog extends TitleAreaDialog {
 	protected Control createDialogArea(Composite parent) {
 		Composite composite = (Composite) super.createDialogArea(parent);
 	
-		Label contentLabel = new Label(composite, SWT.SEPARATOR | SWT.HORIZONTAL);
-		contentLabel.setLayoutData(new GridData(SWT.FILL, SWT.END, true, true));
-		
-		contentLabel.setText(aboutContent);
-	
+		Text content = new Text(shell, SWT.WRAP|SWT.V_SCROLL|SWT.READ_ONLY); 
+		content.setText(aboutContent);
 		return composite;
 	}
-	
+/*	
 	@Override
 	public Point getInitialSize() {
 		Point p = new Point(500, 400);
 		return p;
 	}
-	
+	*/
 }
 

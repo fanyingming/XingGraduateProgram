@@ -9,7 +9,7 @@
             visible="true"
             id="edu.buaa.actionSet">
          <menu
-               label="DS-PeMAT"
+               label="Simulate Tool"
                id="sampleMenu">
             <separator
                   name="sampleGroup">
@@ -17,7 +17,7 @@
          </menu>
          <action
                label="About"
-               icon="icons/sample.gif"
+               icon="icons/about.png"
                class="edu.buaa.actions.AboutAction"
                tooltip="About DS-PeMAT"
                menubarPath="sampleMenu/sampleGroup"
@@ -36,7 +36,7 @@
          
          <action
                label="Config"
-               icon="icons/sample.gif"
+               icon="icons/config.png"
                class="edu.buaa.actions.InputAction"
                tooltip="config something"
                menubarPath="sampleMenu/sampleGroup"
