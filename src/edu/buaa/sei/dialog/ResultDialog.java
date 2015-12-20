@@ -41,10 +41,10 @@ public class ResultDialog extends TitleAreaDialog {
 	public ArrayList<Publisher> publisherList;
 	public String schedPolicy;
 	private Image image = null;
-	private int realtime_dataSize1;
-	private int realtime_dataSize2;
-	private int reliability_dataSize1;
-	private int reliability_dataSize2;
+	private double realtime_dataSize1;
+	private double realtime_dataSize2;
+	private double reliability_dataSize1;
+	private double reliability_dataSize2;
 	private double max_delay1;
 	private double max_delay2;
 	private double max_reliability1;
@@ -107,9 +107,9 @@ public class ResultDialog extends TitleAreaDialog {
 				.getString(Activator.PREF_PARAM_3);
 		String max_reliability1_str = store.getString(Activator.PREF_PARAM_4);
 
-		realtime_dataSize1 = Integer.parseInt(realtime_datasize1_str);
+		realtime_dataSize1 = Double.parseDouble(realtime_datasize1_str);
 		max_delay1 = Double.parseDouble(max_delay1_str);
-		reliability_dataSize1 = Integer.parseInt(reliability_dataSize1_str);
+		reliability_dataSize1 = Double.parseDouble(reliability_dataSize1_str);
 		max_reliability1 = Double.parseDouble(max_reliability1_str);
 
 		String realtime_datasize2_str = store.getString(Activator.PREF_PARAM_5);
@@ -118,9 +118,9 @@ public class ResultDialog extends TitleAreaDialog {
 				.getString(Activator.PREF_PARAM_7);
 		String max_reliability2_str = store.getString(Activator.PREF_PARAM_8);
 
-		realtime_dataSize2 = Integer.parseInt(realtime_datasize2_str);
+		realtime_dataSize2 = Double.parseDouble(realtime_datasize2_str);
 		max_delay2 = Double.parseDouble(max_delay2_str);
-		reliability_dataSize2 = Integer.parseInt(reliability_dataSize2_str);
+		reliability_dataSize2 = Double.parseDouble(reliability_dataSize2_str);
 		max_reliability2 = Double.parseDouble(max_reliability2_str);
 	}
 

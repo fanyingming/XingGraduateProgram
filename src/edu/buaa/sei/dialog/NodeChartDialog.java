@@ -125,6 +125,9 @@ public class NodeChartDialog extends TitleAreaDialog{
         chart.getAxisSet().getYAxis(0).getTitle().setForeground(black);
         chart.getAxisSet().getXAxis(0).getTick().setForeground(black);
         chart.getAxisSet().getYAxis(0).getTick().setForeground(black);
+        
+      //test
+        double[] t = chart.getAxisSet().getYAxis(0).getTick().getTickLabelValues();
        
         String[] nameList = new String[reliaPubList.size()];
         double[] reliaList = new double[reliaPubList.size()];
@@ -166,7 +169,7 @@ public class NodeChartDialog extends TitleAreaDialog{
         chart.getAxisSet().getYAxis(0).getTitle().setForeground(black);
         chart.getAxisSet().getXAxis(0).getTick().setForeground(black);
         chart.getAxisSet().getYAxis(0).getTick().setForeground(black);
-    
+        
         String[] nameList = new String[pubList.size()];
         double[] timeList = new double[pubList.size()];
         
@@ -187,7 +190,7 @@ public class NodeChartDialog extends TitleAreaDialog{
         lineSeries.setLineWidth(3);
         Color color = new Color(Display.getDefault(), 255, 0, 0);
         lineSeries.setSymbolColor(color);
- 
+     
      // adjust the axis range
         chart.getAxisSet().adjustRange();
 	}

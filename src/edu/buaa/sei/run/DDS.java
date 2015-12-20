@@ -357,7 +357,7 @@ public class DDS {
 							int count_t = Integer.valueOf(strList[1]);
 							int sizeKB = StringHandle.getKbFromStr(strList[0]);
 							
-							size += sizeKB*count_t;
+							size += sizeKB;//*count_t;
 							count += count_t;
 						}
 					}
